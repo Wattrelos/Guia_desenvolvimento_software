@@ -270,5 +270,5 @@ echo -e "${COLOR_BOLD}${COLOR_GREEN}============================================
 echo -e "📊 Estatísticas:"
 echo -e "   • Total de Diretórios Processados: ${COLOR_CYAN}${DIR_COUNT}${COLOR_RESET}"
 echo -e "   • Total de Arquivos Modelo:        ${COLOR_CYAN}${FILE_COUNT}${COLOR_RESET}"
-echo -e "\n${COLOR_YELLOW}Dica de Engenharia:${COLOR_RESET} Para mapear o namespace no Composer, adicione ao seu composer.json:"
+echo -e "\n${COLOR_YELLOW}Dica de Engenharia:${COLOR_RESET} Para mapear o namespace no Composer, adicione ao teu composer.json:"
 echo -e "${COLOR_CYAN}\"autoload\": { \"psr-4\": { \"App\\\\\": \"backend/src/\" } }${COLOR_RESET}\n"

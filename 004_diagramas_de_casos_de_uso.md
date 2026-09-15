@@ -301,4 +301,4 @@ Antes de considerar sua modelagem de casos de uso concluída:
 ---
 
 > **Conclusão:**  
-> Com os diagramas de **E-commerce (`general_customer_use.puml`)**, **Ponto de Venda (`general_seller.puml`)** e **Painel (`general_dashboard.puml`)**, o seu SaaS possui um mapeamento comportamental completo. Eles são a especificação exata do que os programadores devem codificar na camada de aplicação, garantindo que o software construído atenda com fidelidade às necessidades dos seus usuários.
+> Com os diagramas de **E-commerce (`general_customer_use.puml`)**, **Ponto de Venda (`general_seller.puml`)** e **Painel (`general_dashboard.puml`)**, o teu SaaS possui um mapeamento comportamental completo. Eles são a especificação exata do que os programadores devem codificar na camada de aplicação, garantindo que o software construído atenda com fidelidade às necessidades dos teus usuários.

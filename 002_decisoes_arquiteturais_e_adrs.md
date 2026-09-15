@@ -2,7 +2,7 @@
 ### *Por Que Documentar Decisões Arquiteturais e Como Criar Softwares que Não Quebram Fora do "Mundo Perfeito" do Localhost*
 
 > 📌 **Nota de Estudo:**  
-> Quase todo desenvolvedor iniciante comete o mesmo erro: projeta o sistema no conforto do seu computador (onde tem Docker, Redis, RabbitMQ e 16 GB de RAM) e entra em pânico quando tenta colocar o sistema no ar em uma hospedagem real de baixo custo e descobre que **nada disso existe lá**. Este guia ensina como usar **ADRs** para tomar decisões conscientes e como projetar **sistemas com fallbacks resilientes** para que seu software rode em qualquer lugar.
+> Quase todo desenvolvedor iniciante comete o mesmo erro: projeta o sistema no conforto do seu computador (onde tem Docker, Redis, RabbitMQ e 16 GB de RAM) e entra em pânico quando tenta colocar o sistema no ar em uma hospedagem real de baixo custo e descobre que **nada disso existe lá**. Este guia ensina como usar **ADRs** para tomar decisões conscientes e como projetar **sistemas com fallbacks resilientes** para que teu software rode em qualquer lugar.
 
 ---
 
@@ -46,7 +46,7 @@ O site simplesmente **não inicia**. Lança erros de conexão fatal, tela branca
 
 ## 2. O Que São ADRs (Architecture Decision Records) e Por Que São Vitais?
 
-Quantas vezes você já olhou para um código antigo seu ou de outro desenvolvedor e pensou:  
+Quantas vezes você já olhou para um código antigo teu ou de outro desenvolvedor e pensou:  
 *"Por que raios quem fez isso usou Slim 4 em vez de Laravel? Por que criaram um fallback em arquivo em vez de obrigar o Redis?"*
 
 Na ausência de documentação, o time gasta dias discutindo as mesmas coisas em círculos ou desfaz decisões inteligentes achando que eram "gambiarras".
@@ -226,7 +226,7 @@ Guardar esse conhecimento e praticá-lo nas suas ADRs transforma você de um mer
 
 | O Desenvolvedor Amador | O Engenheiro de Software |
 | :--- | :--- |
-| Conecta bibliotecas sem pensar na hospedagem final. | Pergunta onde o software vai rodar antes de escrever a primeira linha. |
+| Conecta bibliotecas sem pensar na hospedagem final. | Pergunta onde o software irá rodar antes de escrever a primeira linha. |
 | Escreve código que só funciona na sua própria máquina. | Projeta softwares portáveis que funcionam em qualquer nuvem ou VPS. |
 | Ignora documentação e esquece os "porquês" em semanas. | Registra decisões em ADRs versionadas no Git. |
 | Entra em desespero quando o provedor não tem uma ferramenta. | Desenvolve com padrões de *Fallback* e *Graceful Degradation*. |
@@ -235,5 +235,5 @@ Guardar esse conhecimento e praticá-lo nas suas ADRs transforma você de um mer
 ---
 
 > **Conclusão:**  
-> A experiência de descobrir que uma hospedagem não tem Redis ou RabbitMQ não precisa ser um trauma; ela é o **rito de passagem** que ensina você a pensar como um arquiteto. Documente suas escolhas na **ADR 0001**, desenhe sempre com planos de contingência, e seu software estará pronto para vencer em qualquer ambiente de produção do mundo real.
+> A experiência de descobrir que uma hospedagem não tem Redis ou RabbitMQ não precisa ser um trauma; ela é o **rito de passagem** que ensina você a pensar como um arquiteto. Documente suas escolhas na **ADR 0001**, desenhe sempre com planos de contingência, e teu software estará pronto para vencer em qualquer ambiente de produção do mundo real.
 

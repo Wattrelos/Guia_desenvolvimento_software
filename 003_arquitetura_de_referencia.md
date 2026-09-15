@@ -31,7 +31,7 @@ Essa abordagem cobra um preço altíssimo quando o projeto cresce:
 - Uma alteração em uma regra de cálculo de frete quebra uma tela do painel administrativo.
 
 ### O Princípio da Arquitetura Limpa
-> **"Frameworks, bancos de dados, filas e protocolos de rede são detalhes de implementação. O coração do seu software é a regra de negócio."**
+> **"Frameworks, bancos de dados, filas e protocolos de rede são detalhes de implementação. O coração do teu software é a regra de negócio."**
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -155,7 +155,7 @@ Infrastructure/
 
 > [!TIP]
 > **O Poder do Data Mapper:**  
-> O `DataMapper` isola o esquema do seu banco de dados das classes de negócio. Se no banco a coluna se chama `cli_cd_status_v1`, no seu código de domínio a entidade terá uma propriedade limpa e expressiva como `status: CustomerStatus`. O Mapper faz a tradução bidirecional invisível.
+> O `DataMapper` isola o esquema do teu banco de dados das classes de negócio. Se no banco a coluna se chama `cli_cd_status_v1`, no teu código de domínio a entidade terá uma propriedade limpa e expressiva como `status: CustomerStatus`. O Mapper faz a tradução bidirecional invisível.
 
 ---
 
@@ -229,7 +229,7 @@ class ProcessCheckoutUseCase {
 
 ## 8. Passo a Passo: Como Criar uma Nova Feature do Zero Sem Errar
 
-Toda vez que você for desenvolver uma nova funcionalidade no seu sistema, siga rigorosamente esta sequência de 6 passos de dentro para fora:
+Toda vez que você for desenvolver uma nova funcionalidade no teu sistema, siga rigorosamente esta sequência de 6 passos de dentro para fora:
 
 ```
 [Passo 1: Domínio]  ➔  [Passo 2: Contrato]  ➔  [Passo 3: Aplicação]
@@ -346,7 +346,7 @@ Antes de abrir um Pull Request ou considerar sua tarefa concluída, faça este t
   *(Se sim: ❌ ALERTA! A Action está acumulando regra de negócio em vez de delegar para um Caso de Uso).*
 - [ ] **SQL Fora do Lugar:** Existe qualquer comando SQL (`SELECT`, `INSERT`, `UPDATE`) fora de `src/Infrastructure/Persistence/`?  
   *(Se sim: ❌ VIOLAÇÃO GRAVE! O banco de dados vazou para outras camadas).*
-- [ ] **Velocidade dos Testes Unitários:** O teste unitário do seu Caso de Uso precisa de banco de dados ou conexão de internet para rodar?  
+- [ ] **Velocidade dos Testes Unitários:** O teste unitário do teu Caso de Uso precisa de banco de dados ou conexão de internet para rodar?  
   *(Se sim: ❌ ALERTA! O teste não é unitário; você deve usar Mocks das interfaces de repositório).*
 - [ ] **Tratamento de Sessão e Auth:** A entidade de domínio lê cookies ou `$_SESSION`?  
   *(Se sim: ❌ VIOLAÇÃO! Sessão e HTTP são resolvidos em Middlewares na camada de Apresentação).*
@@ -354,4 +354,4 @@ Antes de abrir um Pull Request ou considerar sua tarefa concluída, faça este t
 ---
 
 > **Mensagem Final:**  
-> A disciplina de manter as camadas isoladas exige esforço consciente no início, mas devolve liberdade infinita ao longo do tempo. Quando seu software for escalado, migrado para a nuvem, transformado em microsserviços ou mantido por dezenas de desenvolvedores, **essa arquitetura garantirá que ele permaneça sólido, testável e elegante.**
+> A disciplina de manter as camadas isoladas exige esforço consciente no início, mas devolve liberdade infinita ao longo do tempo. Quando teu software for escalado, migrado para a nuvem, transformado em microsserviços ou mantido por dezenas de desenvolvedores, **essa arquitetura garantirá que ele permaneça sólido, testável e elegante.**

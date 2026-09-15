@@ -36,7 +36,7 @@ Eis os 5 vícios mais comuns que distinguem o código amador do profissional:
 
 > [!IMPORTANT]
 > **A Regra da Previsibilidade:**  
-> Uma boa arquitetura de pastas não serve para deixar o projeto "bonito", mas sim para torná-lo **previsível**. Um desenvolvedor sênior deve abrir o seu repositório e saber exatamente onde encontrar a regra de cálculo de desconto em **menos de 10 segundos**, sem precisar dar busca global por palavras-chave.
+> Uma boa arquitetura de pastas não serve para deixar o projeto "bonito", mas sim para torná-lo **previsível**. Um desenvolvedor sênior deve abrir o teu repositório e saber exatamente onde encontrar a regra de cálculo de desconto em **menos de 10 segundos**, sem precisar dar busca global por palavras-chave.
 
 ---
 
@@ -137,7 +137,7 @@ O Autoloader do Composer faz a seguinte tradução automática:
 
 > [!WARNING]
 > ### 🚨 A Armadilha do Windows vs. Linux (Case-Sensitivity)
-> O sistema operacional Windows **não diferencia** maiúsculas de minúsculas (`User.php` e `user.php` são vistos como o mesmo arquivo). O Linux (onde seu servidor de produção roda) **diferencia estritamente**.
+> O sistema operacional Windows **não diferencia** maiúsculas de minúsculas (`User.php` e `user.php` são vistos como o mesmo arquivo). O Linux (onde teu servidor de produção roda) **diferencia estritamente**.
 > 
 > Se você nomear o arquivo como `src/Domain/Model/user.php` (minúsculo), mas declarar a classe como `class User`, no Windows o código funcionará perfeitamente. No instante em que você subir para a nuvem ou Docker no Linux, o sistema quebrará fatalmente com o erro:  
 > `Fatal error: Class 'App\Domain\Model\User' not found in ...`  
@@ -227,7 +227,7 @@ Muitos programadores se sentem intimidados por essas siglas: **DDD**, **Clean Ar
 
 > **"O código do meu negócio não deve depender da ferramenta que eu uso para exibi-lo ou salvá-lo."**
 
-Se você trocar o banco de dados MySQL pelo PostgreSQL, o seu código de cálculo de juros bancários não pode sofrer uma única linha de alteração. Se você trocar a interface web em Twig por uma API REST em JSON, a entidade `Cliente` não deve mudar.
+Se você trocar o banco de dados MySQL pelo PostgreSQL, o teu código de cálculo de juros bancários não pode sofrer uma única linha de alteração. Se você trocar a interface web em Twig por uma API REST em JSON, a entidade `Cliente` não deve mudar.
 
 ```
                   ┌────────────────────────────────────────┐
@@ -317,7 +317,7 @@ Para visualizar como as pastas trabalham juntas de forma elegante, acompanhe a j
 
 ## 8. A Regra de Ouro das 3 Perguntas Antes de Criar um Arquivo
 
-Toda vez que você for criar um arquivo novo no seu projeto, pare por 5 segundos e faça a si mesmo estas três perguntas:
+Toda vez que você for criar um arquivo novo no teu projeto, pare por 5 segundos e faça a si mesmo estas três perguntas:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -340,4 +340,4 @@ Toda vez que você for criar um arquivo novo no seu projeto, pare por 5 segundos
 ```
 
 > **Conclusão:**  
-> A excelência no desenvolvimento de software não nasce de frameworks mágicos nem de ferramentas complexas; ela nasce da **disciplina diária em manter as responsabilidades separadas**. Comece aplicando essa árvore em projetos pequenos e, quando estiver diante de um sistema de grande porte, a arquitetura trabalhará a seu favor, e não contra você.
+> A excelência no desenvolvimento de software não nasce de frameworks mágicos nem de ferramentas complexas; ela nasce da **disciplina diária em manter as responsabilidades separadas**. Comece aplicando essa árvore em projetos pequenos e, quando estiver diante de um sistema de grande porte, a arquitetura trabalhará a teu favor, e não contra você.

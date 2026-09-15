@@ -4,7 +4,7 @@
 ---
 
 > 📌 **Apresentação e Filosofia do Projeto:**  
-> Este repositório reúne um currículo técnico abrangente, profundo e atemporal de **Engenharia de Software Moderna**. Concebido para estudantes, desenvolvedores, arquitetos de software e tech leads, o guia desconstrói o ciclo de vida completo de um sistema corporativo — desde a primeira entrevista de requisitos com o cliente até a geração automatizada de pastas e código desacoplado e testável.
+> Este repositório reúne um currículo técnico abrangente, profundo e atemporal de **Engenharia de Software Moderna**. Concebido para estudantes, desenvolvedores, arquitetos de software e tech leads, o guia desconstrói o ciclo de vida completo de um sistema corporativo desde a primeira entrevista de requisitos com o cliente até a geração automatizada de pastas e código desacoplado e testável.
 >
 > Utilizando o **Beta Engine SaaS** (uma plataforma multitenant com e-commerce, frente de caixa/PDV e retaguarda administrativa) como estudo de caso prático, este material une rigor acadêmico, clareza didática e o pragmatismo brutal dos ambientes de produção comerciais.
 
@@ -143,10 +143,10 @@ Se você está iniciando um novo software para um cliente ou nova empresa:
    chmod +x 007_gerar_estrutura_pastas.sh
 
    # 2. Execute uma simulação segura
-   ./007_gerar_estrutura_pastas.sh --dry-run /caminho/do/seu/novo-projeto
+   ./007_gerar_estrutura_pastas.sh --dry-run /caminho/do/teu/novo-projeto
 
    # 3. Crie a estrutura real
-   ./007_gerar_estrutura_pastas.sh /caminho/do/seu/novo-projeto
+   ./007_gerar_estrutura_pastas.sh /caminho/do/teu/novo-projeto
    ```
 5. **Implemente as Camadas do [003](003_arquitetura_de_referencia.md):** Escreva primeiro as Entidades de Domínio, em seguida os Casos de Uso, e por último os Adaptadores de Infraestrutura e Telas.
 
