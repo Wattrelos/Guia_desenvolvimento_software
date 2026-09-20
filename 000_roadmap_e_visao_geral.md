@@ -18,6 +18,7 @@ Para entender a ordem natural da construção de qualquer software, pense na met
 5. A Fundação Estrutural       ➔  005: Modelagem de Dados & Diagrama EER
 6. As Paredes e Gavetas        ➔  006: Estruturas de Pastas & Padrões (PSR-4)
 7. A Automação do Canteiro     ➔  007: Script Automatizado de Scaffolding
+8. A Primeira Viga Habitável   ➔  008: Implementação da Primeira Fatia Vertical
 ```
 
 ---
@@ -66,6 +67,12 @@ Para entender a ordem natural da construção de qualquer software, pense na met
 
 ---
 
+### 📄 [008. Implementação da Primeira Fatia Vertical (Vertical Slice)](008_implementacao_fatia_vertical.md)
+* **O Que Ensina:** O momento exato de começar a programar sem cometer o erro da geração em lote de classes anêmicas.
+* **Tópicos:** Vertical Slice Architecture, a ordem canônica de desenvolvimento (de dentro para fora: Value Objects ➔ Entidades ➔ Contratos ➔ Casos de Uso ➔ Testes com Mocks ➔ Migrations e Repositório PDO ➔ Actions HTTP ADR).
+
+---
+
 ### ⚖️ [Nota de Isenção de Responsabilidade (Disclaimer)](disclaimer.md)
 * **Amparo Legal:** Nota de conformidade acadêmica, propriedade industrial e *Fair Use* embasada na Lei Federal nº 9.610/1998 (Direitos Autorais) e Lei Federal nº 9.279/1996 (Propriedade Industrial).
 
@@ -74,6 +81,6 @@ Para entender a ordem natural da construção de qualquer software, pense na met
 ## 🎯 Como Utilizar Esta Trilha
 
 1. **Para Criar um Projeto do Zero (Greenfield):**  
-   Siga a trilha em **ordem sequencial de 001 a 007**. Ela guiará você com segurança desde a entrevista com o cliente até a geração automatizada do projeto.
+   Siga a trilha em **ordem sequencial de 001 a 008**. Ela guiará você com segurança desde a entrevista com o cliente até a entrega do primeiro caso de uso funcional e testado.
 2. **Para Refatorar um Sistema Existente (Legacy Migration):**  
-   Consulte os módulos `003` (Arquitetura Limpa), `005` (EER) e `006` (Pastas) para reestruturar as camadas do código sem introduzir quebras de regras de negócio.
+   Consulte os módulos `003` (Arquitetura Limpa), `005` (EER), `006` (Pastas) e `008` (Fatia Vertical) para reestruturar as camadas do código sem introduzir quebras de regras de negócio.
