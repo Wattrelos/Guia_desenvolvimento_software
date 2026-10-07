@@ -1,6 +1,6 @@
 # 📜 Guia Prático de Changelogs (Histórico de Mudanças)
 
-> **"Um changelog é um arquivo que contém uma lista com curadoria humana e ordenada cronologicamente de alterações notáveis para cada versão de um projeto."** — *Keep a Changelog* (Olivier Lacan)  
+> **"Um changelog é um arquivo que contém uma lista com curadoria humana e ordenada cronologicamente de alterações notáveis para cada versão de um projeto."** *Keep a Changelog* (Olivier Lacan)  
 > O **Changelog** é um artefato vivo de engenharia de software e governança técnica. Ele traduz a complexidade de centenas de commits, revisões de código e refatorações em uma narrativa clara, estruturada e voltada para o impacto gerado para desenvolvedores, equipes de QA, operadores de infraestrutura (SRE) e usuários finais.
 
 ---

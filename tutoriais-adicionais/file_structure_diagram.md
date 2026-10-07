@@ -254,7 +254,7 @@ Esta seção descreve a **responsabilidade única** de cada diretório, o que po
 
 ### 📌 Raiz do Projeto (`.`)
 
-A raiz contém apenas os arquivos de configuração de nível de projeto — aqueles que ferramentas de linha de comando, CI/CD e o ambiente precisam encontrar na raiz para funcionar corretamente.
+A raiz contém apenas os arquivos de configuração de nível de projeto aqueles que ferramentas de linha de comando, CI/CD e o ambiente precisam encontrar na raiz para funcionar corretamente.
 
 | Arquivo | Responsabilidade |
 | :--- | :--- |
@@ -270,7 +270,7 @@ A raiz contém apenas os arquivos de configuração de nível de projeto — aqu
 
 ### ⚙️ `backend/config/`
 
-Centraliza **todos os parâmetros de montagem da aplicação**. É lida uma única vez durante o bootstrap e não contém regras de negócio — apenas configuração.
+Centraliza **todos os parâmetros de montagem da aplicação**. É lida uma única vez durante o bootstrap e não contém regras de negócio apenas configuração.
 
 #### `backend/config/app.php`
 Define os parâmetros gerais do sistema: nome da aplicação, ambiente (`production`, `development`, `testing`), timezone, nível de log e quaisquer flags de feature toggle. É o equivalente ao `application.yml` do Spring Boot.
@@ -279,7 +279,7 @@ Define os parâmetros gerais do sistema: nome da aplicação, ambiente (`product
 Centraliza as credenciais e opções de conexão com o banco de dados MySQL (DSN, charset, timeout, modo de erro PDO). As credenciais em si são lidas a partir do `.env`, nunca hardcoded aqui.
 
 #### `backend/config/dependencies.php`
-Define o container de Injeção de Dependências (PHP-DI / PSR-11). É aqui que se declara **como** cada interface do Domain é resolvida para uma implementação concreta da Infrastructure — por exemplo, `CustomerRepositoryInterface` → `SqlCustomerRepository`. Esta é a única cola entre as camadas Domain e Infrastructure.
+Define o container de Injeção de Dependências (PHP-DI / PSR-11). É aqui que se declara **como** cada interface do Domain é resolvida para uma implementação concreta da Infrastructure por exemplo, `CustomerRepositoryInterface` → `SqlCustomerRepository`. Esta é a única cola entre as camadas Domain e Infrastructure.
 
 #### `backend/config/middleware.php`
 Declara o pipeline global de middlewares PSR-15 que será executado em **toda** requisição HTTP, independentemente da rota: autenticação de sessão, CSRF, Content-Type, logging de acesso, etc.
@@ -313,15 +313,15 @@ Elementos de domínio que são transversais a todos os Bounded Contexts.
 Enumerações PHP 8.1+ que representam estados, tipos e categorias válidos para o negócio. Por exemplo: `OrderStatus` (pending, paid, shipped, cancelled), `PaymentMethod` (pix, credit_card, cash), `UserRole` (admin, cashier, sales_rep). São tipos seguros que substituem constantes mágicas espalhadas pelo código.
 
 ##### `backend/src/Domain/Shared/Events/`
-Interfaces e classes base dos **Domain Events** — registros imutáveis de que algo significativo aconteceu no domínio. Um evento representa um fato passado: `OrderWasPlaced`, `CustomerWasRegistered`. Eles não contêm comportamento; são apenas mensageiros de dados. Os subscribers que reagem a eles ficam na camada de Application ou Infrastructure.
+Interfaces e classes base dos **Domain Events** registros imutáveis de que algo significativo aconteceu no domínio. Um evento representa um fato passado: `OrderWasPlaced`, `CustomerWasRegistered`. Eles não contêm comportamento; são apenas mensageiros de dados. Os subscribers que reagem a eles ficam na camada de Application ou Infrastructure.
 
 ##### `backend/src/Domain/Shared/ValueObjects/`
 Objetos de valor imutáveis que são compartilhados entre múltiplos Bounded Contexts. Exemplos:
-- `Money` — encapsula valor e moeda, garantindo que operações monetárias (como soma de preços) sejam sempre precisas e seguras.
-- `Email` — valida o formato e garante que nenhum e-mail inválido entre no sistema.
-- `CpfCnpj` — valida e formata o documento fiscal brasileiro.
-- `Address` — agrupa logradouro, bairro, cidade, estado e CEP como uma unidade coesa.
-- `Id` — Identificador único universal (UUID v4) tipado, evitando confundir o ID de um `Customer` com o ID de um `Product`.
+- `Money` encapsula valor e moeda, garantindo que operações monetárias (como soma de preços) sejam sempre precisas e seguras.
+- `Email` valida o formato e garante que nenhum e-mail inválido entre no sistema.
+- `CpfCnpj` valida e formata o documento fiscal brasileiro.
+- `Address` agrupa logradouro, bairro, cidade, estado e CEP como uma unidade coesa.
+- `Id` Identificador único universal (UUID v4) tipado, evitando confundir o ID de um `Customer` com o ID de um `Product`.
 
 #### `backend/src/Domain/Catalog/`
 
@@ -329,97 +329,97 @@ Bounded Context responsável pelo catálogo de produtos, categorias e fabricante
 
 ##### `backend/src/Domain/Catalog/Entities/`
 Entidades com identidade própria que representam os objetos de negócio do catálogo:
-- `Product` — o produto em si, com nome, preço, estoque e referências a categoria e fabricante.
-- `Category` — a hierarquia de classificação dos produtos (pode ser recursiva, com subcategorias).
-- `Manufacturer` — o fabricante ou marca do produto.
+- `Product` o produto em si, com nome, preço, estoque e referências a categoria e fabricante.
+- `Category` a hierarquia de classificação dos produtos (pode ser recursiva, com subcategorias).
+- `Manufacturer` o fabricante ou marca do produto.
 
 ##### `backend/src/Domain/Catalog/Events/`
 Eventos de domínio disparados quando algo significativo acontece no catálogo:
-- `ProductPriceChanged` — disparado quando o preço de um produto é alterado, podendo acionar recálculos de carrinho.
-- `StockDepleted` — disparado quando o estoque de um produto chega a zero, podendo acionar alertas de reposição.
+- `ProductPriceChanged` disparado quando o preço de um produto é alterado, podendo acionar recálculos de carrinho.
+- `StockDepleted` disparado quando o estoque de um produto chega a zero, podendo acionar alertas de reposição.
 
 ##### `backend/src/Domain/Catalog/Repositories/`
 Interfaces (contratos) que declaram **o que** a aplicação precisa de persistência, sem ditar **como** será feito:
-- `ProductRepositoryInterface` — define operações como `findById`, `findByCategory`, `save`, `delete`.
+- `ProductRepositoryInterface` define operações como `findById`, `findByCategory`, `save`, `delete`.
 
 #### `backend/src/Domain/Customer/`
 
 Bounded Context responsável pelos dados, histórico e comportamento dos clientes do sistema.
 
 ##### `backend/src/Domain/Customer/Entities/`
-- `Customer` — o cliente com seus dados pessoais, documentos e status de conta.
-- `CustomerAddress` — endereços de entrega e cobrança vinculados a um cliente.
-- `CustomerHistory` — registro histórico de interações e compras do cliente.
+- `Customer` o cliente com seus dados pessoais, documentos e status de conta.
+- `CustomerAddress` endereços de entrega e cobrança vinculados a um cliente.
+- `CustomerHistory` registro histórico de interações e compras do cliente.
 
 ##### `backend/src/Domain/Customer/Repositories/`
-- `CustomerRepositoryInterface` — define operações como `findByEmail`, `findByCpf`, `save`.
+- `CustomerRepositoryInterface` define operações como `findByEmail`, `findByCpf`, `save`.
 
 #### `backend/src/Domain/Order/`
 
 Bounded Context responsável por todo o ciclo de vida de um pedido: criação, pagamento, faturamento e cancelamento.
 
 ##### `backend/src/Domain/Order/Entities/`
-- `Order` — a entidade raiz do pedido, com status, totais, forma de pagamento e referência ao cliente.
-- `OrderItem` — cada linha do pedido, contendo referência ao produto, quantidade e preço unitário capturado no momento da venda.
-- `OrderHistory` — log imutável de cada mudança de status do pedido.
+- `Order` a entidade raiz do pedido, com status, totais, forma de pagamento e referência ao cliente.
+- `OrderItem` cada linha do pedido, contendo referência ao produto, quantidade e preço unitário capturado no momento da venda.
+- `OrderHistory` log imutável de cada mudança de status do pedido.
 
 ##### `backend/src/Domain/Order/Aggregates/`
-- `OrderAggregate` — a **Raiz de Agregação** (Aggregate Root). Toda operação que modifica um pedido passa exclusivamente por aqui. O agregado garante a consistência das invariantes de negócio: por exemplo, não é possível adicionar itens a um pedido já pago ou cancelado. Nenhum código externo manipula `OrderItem` diretamente — apenas o `OrderAggregate` tem esse direito.
+- `OrderAggregate` a **Raiz de Agregação** (Aggregate Root). Toda operação que modifica um pedido passa exclusivamente por aqui. O agregado garante a consistência das invariantes de negócio: por exemplo, não é possível adicionar itens a um pedido já pago ou cancelado. Nenhum código externo manipula `OrderItem` diretamente apenas o `OrderAggregate` tem esse direito.
 
 ##### `backend/src/Domain/Order/Repositories/`
-- `OrderRepositoryInterface` — define operações como `findById`, `findByCustomer`, `save`.
+- `OrderRepositoryInterface` define operações como `findById`, `findByCustomer`, `save`.
 
 #### `backend/src/Domain/Cart/`
 
 Bounded Context responsável pelo carrinho de compras temporário, que existe antes da confirmação do pedido.
 
 ##### `backend/src/Domain/Cart/Entities/`
-- `Cart` — o carrinho vinculado a uma sessão ou cliente, com cálculo de subtotal e validação de estoque.
-- `CartItem` — cada item adicionado ao carrinho, com quantidade e preço atual.
+- `Cart` o carrinho vinculado a uma sessão ou cliente, com cálculo de subtotal e validação de estoque.
+- `CartItem` cada item adicionado ao carrinho, com quantidade e preço atual.
 
 ##### `backend/src/Domain/Cart/Repositories/`
-- `CartRepositoryInterface` — define operações como `findBySessionId`, `save`, `clear`.
+- `CartRepositoryInterface` define operações como `findBySessionId`, `save`, `clear`.
 
 #### `backend/src/Domain/POS/`
 
 Bounded Context do Ponto de Venda físico, com regras diferentes do e-commerce (pré-venda, caixa, sessão de vendas).
 
 ##### `backend/src/Domain/POS/Entities/`
-- `PreSale` — a pré-venda gerada pelo vendedor de balcão antes da finalização no caixa.
-- `CashRegister` — representa o caixa físico com seu saldo de abertura, movimentações e fechamento.
-- `SaleSession` — a sessão de turno do operador de caixa, agrupando todas as vendas de um período.
+- `PreSale` a pré-venda gerada pelo vendedor de balcão antes da finalização no caixa.
+- `CashRegister` representa o caixa físico com seu saldo de abertura, movimentações e fechamento.
+- `SaleSession` a sessão de turno do operador de caixa, agrupando todas as vendas de um período.
 
 ##### `backend/src/Domain/POS/Repositories/`
-- `PreSaleRepositoryInterface` — contratos para persistência e recuperação de pré-vendas.
+- `PreSaleRepositoryInterface` contratos para persistência e recuperação de pré-vendas.
 
 #### `backend/src/Domain/Procurement/`
 
 Bounded Context de compras e relacionamento com fornecedores.
 
 ##### `backend/src/Domain/Procurement/Entities/`
-- `Supplier` — o fornecedor com seus dados comerciais, contatos e condições de pagamento.
-- `PurchaseOrder` — a ordem de compra emitida para o fornecedor, com itens, quantidades e preços negociados.
+- `Supplier` o fornecedor com seus dados comerciais, contatos e condições de pagamento.
+- `PurchaseOrder` a ordem de compra emitida para o fornecedor, com itens, quantidades e preços negociados.
 
 ##### `backend/src/Domain/Procurement/Repositories/`
-- `SupplierRepositoryInterface` — contratos para busca e persistência de fornecedores.
+- `SupplierRepositoryInterface` contratos para busca e persistência de fornecedores.
 
 #### `backend/src/Domain/Security/`
 
-Bounded Context de controle de acesso baseado em papéis (RBAC — Role-Based Access Control).
+Bounded Context de controle de acesso baseado em papéis (RBAC Role-Based Access Control).
 
 ##### `backend/src/Domain/Security/Entities/`
-- `AdminUser` — o usuário administrativo com credenciais, papel e permissões.
-- `Role` — o papel (perfil de acesso) que agrupa um conjunto de permissões (ex: `Administrador`, `Operador de Caixa`).
-- `Permission` — uma permissão atômica e nomeada (ex: `catalog.products.edit`, `orders.cancel`).
+- `AdminUser` o usuário administrativo com credenciais, papel e permissões.
+- `Role` o papel (perfil de acesso) que agrupa um conjunto de permissões (ex: `Administrador`, `Operador de Caixa`).
+- `Permission` uma permissão atômica e nomeada (ex: `catalog.products.edit`, `orders.cancel`).
 
 ##### `backend/src/Domain/Security/Repositories/`
-- `UserRepositoryInterface` — contratos para busca de usuário por credencial, papel e permissão.
+- `UserRepositoryInterface` contratos para busca de usuário por credencial, papel e permissão.
 
 ---
 
 ### 💼 `backend/src/Application/`
 
-A camada de **orquestração**. Cada Use Case aqui implementa exatamente um caso de uso do sistema (uma história de usuário, um item do backlog). Ele coordena entidades do Domain, chama interfaces de repositório e, ao final, retorna um DTO de resposta — nunca um objeto de domínio diretamente para a camada HTTP.
+A camada de **orquestração**. Cada Use Case aqui implementa exatamente um caso de uso do sistema (uma história de usuário, um item do backlog). Ele coordena entidades do Domain, chama interfaces de repositório e, ao final, retorna um DTO de resposta nunca um objeto de domínio diretamente para a camada HTTP.
 
 > [!IMPORTANT]
 > **Regra:** nenhum Use Case pode instanciar um objeto PDO, chamar `curl_exec` ou depender de uma classe concreta de infraestrutura. Ele trabalha **exclusivamente** com interfaces declaradas no Domain.
@@ -431,44 +431,44 @@ Interfaces e classes base compartilhadas entre todos os Use Cases: interface de 
 
 ##### `backend/src/Application/Catalog/DTOs/`
 Objetos simples de transferência de dados do contexto de catálogo:
-- `ProductSearchDTO` — carrega os critérios de busca recebidos do HTTP (termo, categoria, ordenação, paginação).
-- `ProductResponseDTO` — estrutura de saída com os dados do produto a ser retornado pela API ou renderizado no template.
+- `ProductSearchDTO` carrega os critérios de busca recebidos do HTTP (termo, categoria, ordenação, paginação).
+- `ProductResponseDTO` estrutura de saída com os dados do produto a ser retornado pela API ou renderizado no template.
 
 ##### `backend/src/Application/Catalog/UseCases/`
-- `SearchCatalogUseCase` — recebe um `ProductSearchDTO`, consulta o repositório e retorna uma coleção paginada.
-- `GetProductDetailsUseCase` — busca um produto pelo seu ID e retorna seus detalhes completos.
-- `CreateProductUseCase` — valida os dados recebidos, cria a entidade `Product` e a persiste via repositório.
-- `UpdateProductUseCase` — localiza o produto, aplica as mudanças respeitando as invariantes de negócio e persiste.
+- `SearchCatalogUseCase` recebe um `ProductSearchDTO`, consulta o repositório e retorna uma coleção paginada.
+- `GetProductDetailsUseCase` busca um produto pelo seu ID e retorna seus detalhes completos.
+- `CreateProductUseCase` valida os dados recebidos, cria a entidade `Product` e a persiste via repositório.
+- `UpdateProductUseCase` localiza o produto, aplica as mudanças respeitando as invariantes de negócio e persiste.
 
 #### `backend/src/Application/Customer/`
 
 ##### `backend/src/Application/Customer/DTOs/`
-- `RegisterCustomerDTO` — dados necessários para cadastrar um novo cliente (nome, e-mail, CPF, senha).
-- `UpdateAddressDTO` — dados para adicionar ou atualizar um endereço de entrega.
+- `RegisterCustomerDTO` dados necessários para cadastrar um novo cliente (nome, e-mail, CPF, senha).
+- `UpdateAddressDTO` dados para adicionar ou atualizar um endereço de entrega.
 
 ##### `backend/src/Application/Customer/UseCases/`
-- `RegisterCustomerUseCase` — valida unicidade de e-mail e CPF, cria a entidade `Customer` e a persiste.
-- `AuthenticateUseCase` — verifica credenciais contra o hash armazenado e retorna o token JWT.
+- `RegisterCustomerUseCase` valida unicidade de e-mail e CPF, cria a entidade `Customer` e a persiste.
+- `AuthenticateUseCase` verifica credenciais contra o hash armazenado e retorna o token JWT.
 
 #### `backend/src/Application/Order/`
 
 ##### `backend/src/Application/Order/DTOs/`
-- `CheckoutDTO` — dados do carrinho, endereço de entrega e forma de pagamento para iniciar o checkout.
-- `OrderSummaryDTO` — estrutura de saída com o resumo do pedido confirmado.
+- `CheckoutDTO` dados do carrinho, endereço de entrega e forma de pagamento para iniciar o checkout.
+- `OrderSummaryDTO` estrutura de saída com o resumo do pedido confirmado.
 
 ##### `backend/src/Application/Order/UseCases/`
-- `ProcessCheckoutUseCase` — o Use Case mais complexo do sistema. Valida estoque, calcula frete, processa pagamento via Gateway e cria o `Order` via `OrderAggregate`.
-- `CancelOrderUseCase` — verifica se o pedido pode ser cancelado, executa o estorno e atualiza o status.
+- `ProcessCheckoutUseCase` o Use Case mais complexo do sistema. Valida estoque, calcula frete, processa pagamento via Gateway e cria o `Order` via `OrderAggregate`.
+- `CancelOrderUseCase` verifica se o pedido pode ser cancelado, executa o estorno e atualiza o status.
 
 #### `backend/src/Application/POS/`
 
 ##### `backend/src/Application/POS/DTOs/`
-- `CreatePreSaleDTO` — dados dos itens selecionados pelo vendedor para gerar o ticket de pré-venda.
-- `ProcessPaymentDTO` — dados da forma de pagamento escolhida na finalização no caixa.
+- `CreatePreSaleDTO` dados dos itens selecionados pelo vendedor para gerar o ticket de pré-venda.
+- `ProcessPaymentDTO` dados da forma de pagamento escolhida na finalização no caixa.
 
 ##### `backend/src/Application/POS/UseCases/`
-- `EmitPreSaleTicketUseCase` — cria a `PreSale`, reserva o estoque temporariamente e gera o ticket para impressão.
-- `FinalizeSaleUseCase` — converte a pré-venda em `Order` definitivo, debita o estoque e registra no caixa.
+- `EmitPreSaleTicketUseCase` cria a `PreSale`, reserva o estoque temporariamente e gera o ticket para impressão.
+- `FinalizeSaleUseCase` converte a pré-venda em `Order` definitivo, debita o estoque e registra no caixa.
 
 ---
 
@@ -488,65 +488,65 @@ Um construtor de queries SQL fluente e parametrizado que previne SQL Injection. 
 Implementa o padrão **Unit of Work**: rastreia todas as entidades carregadas durante uma requisição em um **Identity Map** (evitando carregar o mesmo registro duas vezes do banco) e gerencia o commit ou rollback de todas as mudanças em uma única transação de banco ao final do fluxo.
 
 ##### `backend/src/Infrastructure/Persistence/Mappers/`
-Os **Data Mappers** são os tradutores entre o mundo relacional (arrays de colunas SQL) e o mundo orientado a objetos (entidades de domínio). Um `CustomerMapper`, por exemplo, transforma um `array` com colunas `id`, `full_name`, `email_address` na entidade `Customer` com seus Value Objects devidamente instanciados — e vice-versa.
+Os **Data Mappers** são os tradutores entre o mundo relacional (arrays de colunas SQL) e o mundo orientado a objetos (entidades de domínio). Um `CustomerMapper`, por exemplo, transforma um `array` com colunas `id`, `full_name`, `email_address` na entidade `Customer` com seus Value Objects devidamente instanciados e vice-versa.
 
 ##### `backend/src/Infrastructure/Persistence/Repositories/`
 As implementações concretas de cada interface de repositório declarada no Domain. Por exemplo, `SqlCustomerRepository` implementa `CustomerRepositoryInterface` usando PDO e o `CustomerMapper`. Nenhuma outra parte do sistema (exceto o container de DI) sabe que esta classe existe.
 
 #### `backend/src/Infrastructure/Cache/`
 Adaptadores de cache que implementam uma interface comum (`CacheInterface`):
-- `RedisAdapter` — armazena e recupera dados do Redis para cache de sessão, resultado de queries e filas.
-- `MemoryAdapter` — cache em memória para testes, sem dependência de servidor externo.
+- `RedisAdapter` armazena e recupera dados do Redis para cache de sessão, resultado de queries e filas.
+- `MemoryAdapter` cache em memória para testes, sem dependência de servidor externo.
 
 #### `backend/src/Infrastructure/Messaging/`
 Integração com o sistema de filas assíncronas:
-- `RabbitMQPublisher` — publica eventos de domínio (como `OrderWasPlaced`) em exchanges do RabbitMQ para processamento assíncrono.
-- `EventPublisher` — implementação da interface `EventBusInterface` que determina se o evento vai para o RabbitMQ ou é processado sincronamente.
+- `RabbitMQPublisher` publica eventos de domínio (como `OrderWasPlaced`) em exchanges do RabbitMQ para processamento assíncrono.
+- `EventPublisher` implementação da interface `EventBusInterface` que determina se o evento vai para o RabbitMQ ou é processado sincronamente.
 
 #### `backend/src/Infrastructure/Security/`
 Implementações concretas dos serviços de segurança:
-- `Argon2idHasher` — usa o algoritmo Argon2id (recomendado pelo OWASP) para hash seguro de senhas.
-- `JwtProvider` — gera, assina e valida tokens JWT para autenticação stateless da API.
+- `Argon2idHasher` usa o algoritmo Argon2id (recomendado pelo OWASP) para hash seguro de senhas.
+- `JwtProvider` gera, assina e valida tokens JWT para autenticação stateless da API.
 
 #### `backend/src/Infrastructure/Gateways/`
 
 ##### `backend/src/Infrastructure/Gateways/Payments/`
 Adaptadores de pagamento que implementam uma `PaymentGatewayInterface` comum:
-- `StripeGateway` — integração com a API do Stripe para cartão de crédito internacional.
-- `PixGateway` — geração de QR Code Pix via API bancária.
-- `TefGateway` — integração com terminal TEF (Transferência Eletrônica de Fundos) para o PDV físico.
+- `StripeGateway` integração com a API do Stripe para cartão de crédito internacional.
+- `PixGateway` geração de QR Code Pix via API bancária.
+- `TefGateway` integração com terminal TEF (Transferência Eletrônica de Fundos) para o PDV físico.
 
 ##### `backend/src/Infrastructure/Gateways/Shipping/`
 Adaptadores de frete que implementam uma `ShippingGatewayInterface`:
-- `CorreiosGateway` — consulta de prazos e preços via Web Service dos Correios.
+- `CorreiosGateway` consulta de prazos e preços via Web Service dos Correios.
 - Adaptadores adicionais para transportadoras privadas (Jadlog, Total Express, etc.).
 
 ##### `backend/src/Infrastructure/Gateways/Fiscal/`
 Adaptadores para obrigações fiscais:
-- `NfceGateway` — emissão e cancelamento de NFC-e (Nota Fiscal de Consumidor Eletrônica) via SEFAZ.
+- `NfceGateway` emissão e cancelamento de NFC-e (Nota Fiscal de Consumidor Eletrônica) via SEFAZ.
 - Comunicação com o SEFAZ estadual para transmissão e recepção de eventos fiscais.
 
 ---
 
 ### 🌐 `backend/src/Http/`
 
-A porta de entrada HTTP da aplicação. Recebe requisições PSR-7, extrai dados, delega para a camada de Application e formata a resposta. Esta camada **não tem regras de negócio** — apenas orquestração de entrada/saída HTTP.
+A porta de entrada HTTP da aplicação. Recebe requisições PSR-7, extrai dados, delega para a camada de Application e formata a resposta. Esta camada **não tem regras de negócio** apenas orquestração de entrada/saída HTTP.
 
 #### `backend/src/Http/Middlewares/`
 Middlewares PSR-15 executados no pipeline de cada requisição (além dos globais em `config/middleware.php`):
-- `AuthGuardMiddleware` — verifica o token JWT e rejeita acessos não autenticados com `401 Unauthorized`.
-- `CsrfMiddleware` — valida tokens CSRF em formulários HTML.
-- `RateLimitMiddleware` — limita o número de requisições por IP/usuário em um intervalo de tempo.
-- `PermissionMiddleware` — verifica se o usuário autenticado possui a permissão necessária para a rota.
+- `AuthGuardMiddleware` verifica o token JWT e rejeita acessos não autenticados com `401 Unauthorized`.
+- `CsrfMiddleware` valida tokens CSRF em formulários HTML.
+- `RateLimitMiddleware` limita o número de requisições por IP/usuário em um intervalo de tempo.
+- `PermissionMiddleware` verifica se o usuário autenticado possui a permissão necessária para a rota.
 
 #### `backend/src/Http/Responders/`
 Implementam o padrão **ADR (Action-Domain-Responder)**, separando a lógica de formatação da resposta do Controller:
-- `TwigResponder` — renderiza templates `.twig` e retorna uma resposta HTML com o status correto.
-- `JsonApiResponder` — serializa dados em JSON seguindo as convenções da API (envelope, paginação, erros).
-- `RedirectResponder` — gera respostas de redirecionamento (301, 302) com cabeçalho `Location`.
+- `TwigResponder` renderiza templates `.twig` e retorna uma resposta HTML com o status correto.
+- `JsonApiResponder` serializa dados em JSON seguindo as convenções da API (envelope, paginação, erros).
+- `RedirectResponder` gera respostas de redirecionamento (301, 302) com cabeçalho `Location`.
 
 #### `backend/src/Http/Controllers/`
-Os **Action Controllers** — cada Controller (ou Action, no padrão ADR) é responsável por exatamente uma ação do sistema. Eles são magros: recebem a requisição PSR-7, montam o DTO, chamam o Use Case e devolvem a resposta ao Responder.
+Os **Action Controllers** cada Controller (ou Action, no padrão ADR) é responsável por exatamente uma ação do sistema. Eles são magros: recebem a requisição PSR-7, montam o DTO, chamam o Use Case e devolvem a resposta ao Responder.
 
 ##### `backend/src/Http/Controllers/Storefront/`
 Actions da loja virtual voltadas ao cliente final: listagem de catálogo (`CatalogAction`), página de produto (`ProductDetailAction`), gerenciamento de carrinho (`AddToCartAction`, `RemoveFromCartAction`), fluxo de checkout (`CheckoutAction`) e área do cliente (`CustomerDashboardAction`).
@@ -556,8 +556,8 @@ Actions do painel administrativo (backoffice): dashboard de métricas, gestão d
 
 ##### `backend/src/Http/Controllers/POS/`
 Actions do Ponto de Venda:
-- `SalesRep/` — ações do vendedor de balcão: busca de produto, criação de pré-venda, emissão de ticket.
-- `Cashier/` — ações do operador de caixa: abertura de caixa, processamento de pagamento, fechamento de caixa.
+- `SalesRep/` ações do vendedor de balcão: busca de produto, criação de pré-venda, emissão de ticket.
+- `Cashier/` ações do operador de caixa: abertura de caixa, processamento de pagamento, fechamento de caixa.
 
 ##### `backend/src/Http/Controllers/Api/`
 Actions da API RESTful (v1), consumida por aplicativos mobile ou integrações B2B. Seguem os princípios REST (verbos HTTP corretos, códigos de status semânticos, respostas JSON padronizadas).
@@ -570,9 +570,9 @@ Recursos que fazem parte do projeto mas são **processados ou servidos** pela ap
 
 #### `backend/resources/locales/`
 Arquivos de internacionalização (i18n) no formato padrão (`.json` ou `.po`/`.mo`), organizados por locale:
-- `pt-br/` — Português do Brasil (idioma padrão do sistema).
-- `en-gb/` — Inglês Britânico (para expansão internacional).
-- `es-es/` — Espanhol (para o mercado ibero-americano).
+- `pt-br/` Português do Brasil (idioma padrão do sistema).
+- `en-gb/` Inglês Britânico (para expansão internacional).
+- `es-es/` Espanhol (para o mercado ibero-americano).
 
 Cada arquivo mapeia uma chave de tradução (`"order.status.paid"`) para a string no idioma correspondente (`"Pagamento Confirmado"`).
 
@@ -581,34 +581,34 @@ Templates **Twig** (`.twig`). Twig é um motor de templates seguro que separa a 
 
 ##### `backend/resources/views/components/`
 Componentes de design seguindo a metodologia **Atomic Design**, reutilizáveis globalmente por qualquer contexto:
-- `atoms/` — os menores blocos indivisíveis: botões (`btn-primary.twig`), campos de input, badges de status, ícones SVG.
-- `molecules/` — combinações de átomos que formam um componente com função específica: card de produto, barra de busca, alerta de notificação.
-- `organisms/` — combinações de moléculas que formam seções completas de interface: cabeçalho global com navegação, rodapé, tabela de listagem com paginação.
+- `atoms/` os menores blocos indivisíveis: botões (`btn-primary.twig`), campos de input, badges de status, ícones SVG.
+- `molecules/` combinações de átomos que formam um componente com função específica: card de produto, barra de busca, alerta de notificação.
+- `organisms/` combinações de moléculas que formam seções completas de interface: cabeçalho global com navegação, rodapé, tabela de listagem com paginação.
 
 ##### `backend/resources/views/layouts/`
 Layouts base Twig que definem a estrutura HTML completa de cada contexto visual:
-- `base.twig` — layout principal da loja (com head, header, footer e bloco de conteúdo).
-- `auth.twig` — layout simplificado para páginas de login e recuperação de senha.
-- `error.twig` — layout para páginas de erro (404, 500).
+- `base.twig` layout principal da loja (com head, header, footer e bloco de conteúdo).
+- `auth.twig` layout simplificado para páginas de login e recuperação de senha.
+- `error.twig` layout para páginas de erro (404, 500).
 
 ##### `backend/resources/views/storefront/`
 Templates específicos da loja virtual. Possuem seus próprios `components/` locais para átomos e moléculas exclusivos do contexto de e-commerce:
-- `catalog/` — listagem de produtos, página de categoria, resultados de busca, filtros.
-- `checkout/` — carrinho de compras, seleção de endereço, seleção de frete, pagamento, confirmação.
-- `customer/` — área do cliente: login, cadastro, histórico de pedidos, edição de perfil.
+- `catalog/` listagem de produtos, página de categoria, resultados de busca, filtros.
+- `checkout/` carrinho de compras, seleção de endereço, seleção de frete, pagamento, confirmação.
+- `customer/` área do cliente: login, cadastro, histórico de pedidos, edição de perfil.
 
 ##### `backend/resources/views/admin/`
 Templates do backoffice. Possuem seus próprios `components/` locais para widgets de dashboard e elementos específicos de administração:
-- `dashboard/` — painel de KPIs, gráficos de vendas e resumo operacional.
-- `catalog/` — formulários e listagens de produtos, categorias e fabricantes.
-- `sales/` — listagem e detalhamento de pedidos, emissão de notas fiscais.
-- `crm/` — gestão de clientes, aprovação de cadastros, histórico.
-- `settings/` — configurações gerais, parâmetros de loja, usuários e permissões.
+- `dashboard/` painel de KPIs, gráficos de vendas e resumo operacional.
+- `catalog/` formulários e listagens de produtos, categorias e fabricantes.
+- `sales/` listagem e detalhamento de pedidos, emissão de notas fiscais.
+- `crm/` gestão de clientes, aprovação de cadastros, histórico.
+- `settings/` configurações gerais, parâmetros de loja, usuários e permissões.
 
 ##### `backend/resources/views/pos/`
 Templates do Ponto de Venda, otimizados para uso em telas de toque e operação rápida:
-- `cashier/` — interface do operador de caixa: lista de pré-vendas pendentes, processamento de pagamento, fechamento de caixa.
-- `sales-rep/` — interface do vendedor: busca de produto por código ou nome, montagem de pré-venda, impressão de ticket.
+- `cashier/` interface do operador de caixa: lista de pré-vendas pendentes, processamento de pagamento, fechamento de caixa.
+- `sales-rep/` interface do vendedor: busca de produto por código ou nome, montagem de pré-venda, impressão de ticket.
 
 ---
 
@@ -617,13 +617,13 @@ Templates do Ponto de Venda, otimizados para uso em telas de toque e operação 
 O **único diretório exposto à internet** pelo servidor web (Apache/Nginx). Nenhum outro diretório deve ser configurado como `DocumentRoot`. Isso garante que código PHP, configurações, segredos e o `vendor/` nunca sejam acessíveis diretamente pelo navegador.
 
 #### `public_html/index.php`
-O **Front Controller** — ponto de entrada único de toda a aplicação. Carrega o autoloader do Composer, inicializa o container de DI, monta o pipeline de middlewares e despacha a requisição PSR-7 para o roteador Slim 4. Uma única requisição, independente de qual contexto (Store, Admin, POS, API), começa e termina aqui.
+O **Front Controller** ponto de entrada único de toda a aplicação. Carrega o autoloader do Composer, inicializa o container de DI, monta o pipeline de middlewares e despacha a requisição PSR-7 para o roteador Slim 4. Uma única requisição, independente de qual contexto (Store, Admin, POS, API), começa e termina aqui.
 
 #### `public_html/assets/`
 Assets estáticos **já compilados e minificados** pelo pipeline de build (Webpack, Vite ou similar). Servidos diretamente pelo Nginx sem passar pelo PHP:
-- `css/` — folhas de estilo compiladas a partir do Sass/PostCSS.
-- `js/` — bundles JavaScript otimizados (com tree-shaking e code-splitting).
-- `fonts/` — fontes tipográficas auto-hospedadas (WOFF2).
+- `css/` folhas de estilo compiladas a partir do Sass/PostCSS.
+- `js/` bundles JavaScript otimizados (com tree-shaking e code-splitting).
+- `fonts/` fontes tipográficas auto-hospedadas (WOFF2).
 
 #### `public_html/adm_[PASSWORD]/`
 Subdiretório com nome ofuscado que atua como `DocumentRoot` secundário do painel administrativo. A ofuscação do nome (substituindo `[PASSWORD]` por uma string aleatória) é uma medida de segurança por obscuridade que dificulta ataques de força bruta contra a interface de administração. O nome real é definido como variável de ambiente.
@@ -635,7 +635,7 @@ Subdiretório com nome ofuscado que atua como `DocumentRoot` secundário do pain
 Versionamento estrutural do banco de dados. Esta pasta **não vai para a produção** na mesma forma que o código da aplicação, mas é essencial para CI/CD e para onboarding de novos desenvolvedores.
 
 #### `database/migrations/`
-Scripts SQL ou PHP (usando uma biblioteca de migrations como Phinx ou Doctrine Migrations) que descrevem **cada mudança estrutural** no banco de dados de forma incremental e reversível. Cada arquivo tem um timestamp no nome (`20240801120000_create_customers_table.php`) garantindo ordem de execução determinística. Nunca se altera um arquivo de migration existente — sempre se cria um novo.
+Scripts SQL ou PHP (usando uma biblioteca de migrations como Phinx ou Doctrine Migrations) que descrevem **cada mudança estrutural** no banco de dados de forma incremental e reversível. Cada arquivo tem um timestamp no nome (`20240801120000_create_customers_table.php`) garantindo ordem de execução determinística. Nunca se altera um arquivo de migration existente sempre se cria um novo.
 
 #### `database/seeds/`
 Scripts de carga inicial de dados, usados para popular o banco em ambientes de desenvolvimento e testes de integração. Por exemplo: categorias padrão, usuário administrador inicial, produtos de demonstração. **Nunca** são executados em produção com dados reais de clientes.
@@ -651,16 +651,16 @@ Central unificada de toda a documentação do projeto que não é código. Organ
 
 #### `docs/architecture/`
 Documentação técnica da arquitetura do sistema.
-- `adr/` — **Architecture Decision Records**: documentos curtos e numerados que registram *o quê* foi decidido, *por quê* foi decidido assim e quais alternativas foram descartadas. Exemplo: `ADR-001-escolha-do-slim-4-sobre-laravel.md`.
-- `components/` — diagramas de componentes e suas responsabilidades.
-- `deployment/` — manuais de deploy, diagramas de infraestrutura (servidores, DNS, SSL), guias de provisionamento.
-- `reviews/` — relatórios de revisão de arquitetura e de código, apontando melhorias e débitos técnicos.
-- `file_structure_diagram.puml` — o diagrama PlantUML da estrutura de pastas, fonte para geração de imagens renderizadas.
+- `adr/` **Architecture Decision Records**: documentos curtos e numerados que registram *o quê* foi decidido, *por quê* foi decidido assim e quais alternativas foram descartadas. Exemplo: `ADR-001-escolha-do-slim-4-sobre-laravel.md`.
+- `components/` diagramas de componentes e suas responsabilidades.
+- `deployment/` manuais de deploy, diagramas de infraestrutura (servidores, DNS, SSL), guias de provisionamento.
+- `reviews/` relatórios de revisão de arquitetura e de código, apontando melhorias e débitos técnicos.
+- `file_structure_diagram.puml` o diagrama PlantUML da estrutura de pastas, fonte para geração de imagens renderizadas.
 
 #### `docs/business/`
 Documentação orientada ao negócio, escrita em linguagem acessível para stakeholders não técnicos.
-- `processes/` — diagramas BPMN ou fluxogramas dos processos de negócio (venda, devolução, compra de fornecedor).
-- `use-cases/` — especificações detalhadas de casos de uso do sistema: atores, pré-condições, fluxo principal, fluxos alternativos, fluxos de exceção e pós-condições. Cada arquivo documenta um caso de uso específico.
+- `processes/` diagramas BPMN ou fluxogramas dos processos de negócio (venda, devolução, compra de fornecedor).
+- `use-cases/` especificações detalhadas de casos de uso do sistema: atores, pré-condições, fluxo principal, fluxos alternativos, fluxos de exceção e pós-condições. Cada arquivo documenta um caso de uso específico.
 
 #### `docs/database/`
 Diagramas de entidade-relacionamento (ER/EER) e o dicionário de dados (descrição de cada tabela, coluna, tipo, restrições e significado de negócio).
@@ -669,40 +669,40 @@ Diagramas de entidade-relacionamento (ER/EER) e o dicionário de dados (descriç
 Diagramas gerais de múltiplas perspectivas (C4 Model, diagramas de sequência gerais, diagramas de contexto de sistema) destinados tanto à engenharia quanto a stakeholders executivos.
 
 #### `docs/DoD/`
-**Definition of Done** — documento que define os critérios objetivos que uma funcionalidade deve satisfazer para ser considerada concluída: testes escritos e passando, cobertura mínima atingida, documentação atualizada, revisão de código aprovada, deploy em staging validado.
+**Definition of Done** documento que define os critérios objetivos que uma funcionalidade deve satisfazer para ser considerada concluída: testes escritos e passando, cobertura mínima atingida, documentação atualizada, revisão de código aprovada, deploy em staging validado.
 
 #### `docs/domain/`
 Glossário e mapa do domínio de negócio.
-- `roles/` — descrição de cada papel (ator) que interage com o sistema: Cliente Final, Vendedor de Balcão, Operador de Caixa, Gerente, Administrador do Sistema. Inclui responsabilidades, permissões e jornadas típicas.
+- `roles/` descrição de cada papel (ator) que interage com o sistema: Cliente Final, Vendedor de Balcão, Operador de Caixa, Gerente, Administrador do Sistema. Inclui responsabilidades, permissões e jornadas típicas.
 
 #### `docs/issues/`
-Centralização de issues e bugs documentados de forma detalhada — especialmente útil para rastrear problemas complexos com contexto técnico e histórico de investigação, complementando (mas não substituindo) o sistema de issues do Git.
+Centralização de issues e bugs documentados de forma detalhada especialmente útil para rastrear problemas complexos com contexto técnico e histórico de investigação, complementando (mas não substituindo) o sistema de issues do Git.
 
 #### `docs/kb/`
-**Knowledge Base (Base de Conhecimento)** — artigos técnicos sobre decisões, gotchas, tutoriais internos e boas práticas específicas do projeto. É a "wiki interna" da equipe.
+**Knowledge Base (Base de Conhecimento)** artigos técnicos sobre decisões, gotchas, tutoriais internos e boas práticas específicas do projeto. É a "wiki interna" da equipe.
 
 #### `docs/legal/`
 Documentação legal e de compliance do projeto.
-- `labor-opinions/` — laudos técnicos e pareceres jurídicos relacionados ao sistema (ex: parecer sobre conformidade com a LGPD, laudo de auditoria de segurança).
+- `labor-opinions/` laudos técnicos e pareceres jurídicos relacionados ao sistema (ex: parecer sobre conformidade com a LGPD, laudo de auditoria de segurança).
 
 #### `docs/migrations/`
-Documentação das migrações de dados complexas — especialmente migrações de dados legados para o novo sistema, detalhando o mapeamento de campos, regras de transformação e plano de rollback.
+Documentação das migrações de dados complexas especialmente migrações de dados legados para o novo sistema, detalhando o mapeamento de campos, regras de transformação e plano de rollback.
 
 #### `docs/requirements/`
 Especificação de requisitos do sistema.
-- `business-rules/` — regras de negócio documentadas de forma estruturada (ex: "desconto máximo por vendedor é 10%", "pedido só pode ser cancelado em até 24h após a confirmação").
-- `functional/` — requisitos funcionais: o que o sistema deve *fazer*.
-- `non-functional/` — requisitos não funcionais: performance, segurança, disponibilidade, escalabilidade.
+- `business-rules/` regras de negócio documentadas de forma estruturada (ex: "desconto máximo por vendedor é 10%", "pedido só pode ser cancelado em até 24h após a confirmação").
+- `functional/` requisitos funcionais: o que o sistema deve *fazer*.
+- `non-functional/` requisitos não funcionais: performance, segurança, disponibilidade, escalabilidade.
 
 #### `docs/specs/`
 Especificações formais e machine-readable.
-- `features/` — especificações BDD em formato Gherkin (`.feature`), descrevendo comportamentos do sistema em linguagem natural estruturada.
-- `schemas/` — schemas JSON Schema, OpenAPI 3.1 (contratos da API REST) e schemas de mensageria (payloads do RabbitMQ).
+- `features/` especificações BDD em formato Gherkin (`.feature`), descrevendo comportamentos do sistema em linguagem natural estruturada.
+- `schemas/` schemas JSON Schema, OpenAPI 3.1 (contratos da API REST) e schemas de mensageria (payloads do RabbitMQ).
 
 #### `docs/workflows/`
 Diagramas de comportamento dinâmico do sistema.
-- `activity-diagrams/` — diagramas de atividade UML que descrevem o fluxo de ações em processos complexos.
-- `sequence-diagrams/` — diagramas de sequência UML que mostram a interação temporal entre componentes do sistema.
+- `activity-diagrams/` diagramas de atividade UML que descrevem o fluxo de ações em processos complexos.
+- `sequence-diagrams/` diagramas de sequência UML que mostram a interação temporal entre componentes do sistema.
 
 ---
 

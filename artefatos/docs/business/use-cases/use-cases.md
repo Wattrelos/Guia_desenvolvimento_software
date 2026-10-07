@@ -1,6 +1,6 @@
 # 🏛️ Guia Prático de Casos de Uso (Use Cases)
 
-> **"Um Caso de Uso é um contrato de comportamento firmado entre os stakeholders de um sistema."** — Alistair Cockburn, *Writing Effective Use Cases*  
+> **"Um Caso de Uso é um contrato de comportamento firmado entre os stakeholders de um sistema."** Alistair Cockburn, *Writing Effective Use Cases*  
 > O **Caso de Uso (Use Case)** é o artefato central que conecta os objetivos de negócio dos atores às capacidades funcionais do software. Ele descreve, em linguagem clara, inequívoca e estruturada, como um ator interage com o sistema para atingir uma meta de valor mensurável.
 
 ---

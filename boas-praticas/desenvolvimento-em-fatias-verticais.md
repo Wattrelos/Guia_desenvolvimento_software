@@ -157,7 +157,7 @@ Cada nova fatia vertical dispara um "projétil traçante": uma implementação f
 
 ### 3. Diagrama Prático: O Tracer Bullet Atravessando as Camadas (Fatia 33 do Projeto)
 
-O diagrama abaixo — extraído do arquivo [`tracer-bullet.mmd`](tracer-bullet.mmd) — ilustra exatamente a jornada de um **Tracer Bullet** utilizando o caso real que acabamos de implementar na **Fatia 33** (Rastreamento Last-Mile e Histórico de Pedidos):
+O diagrama abaixo extraído do arquivo [`tracer-bullet.mmd`](tracer-bullet.mmd) ilustra exatamente a jornada de um **Tracer Bullet** utilizando o caso real que acabamos de implementar na **Fatia 33** (Rastreamento Last-Mile e Histórico de Pedidos):
 
 ```mermaid
 flowchart TD

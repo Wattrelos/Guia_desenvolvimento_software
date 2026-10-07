@@ -1,6 +1,6 @@
 # 🏛️ Guia Prático de Architecture Decision Records (ADR)
 
-> **"A arquitetura de software é simplesmente aquilo que é difícil de mudar."** — Martin Fowler  
+> **"A arquitetura de software é simplesmente aquilo que é difícil de mudar."** Martin Fowler  
 > O **Architecture Decision Record (ADR)** é um artefato vivo de engenharia de software utilizado para registrar formalmente decisões arquiteturais relevantes tomadas ao longo do ciclo de vida de um projeto, juntamente com o seu contexto, as alternativas avaliadas e os trade-offs envolvidos.
 
 ---

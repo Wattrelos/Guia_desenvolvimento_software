@@ -2,7 +2,7 @@ FOWLER, Martin. Patterns of Enterprise Application Architecture. Boston: Addison
 
 COCKBURN, Alistair. Escrevendo casos de uso eficazes: um guia prático para desenvolvedores de software. Porto Alegre: Bookman, 2005. 248 p. ISBN: 978-8536304250.
 
-STEVENS, Perdita; WHITTLE, Jon; BOOCH, Grady (ed.). UML 2003 — The Unified Modeling Language, Modeling Languages and Applications: 6th International Conference, San Francisco, CA, USA, October 20-24, 2003. Proceedings. Berlin: Springer, 2003. (Lecture Notes in Computer Science, v. 2863).
+STEVENS, Perdita; WHITTLE, Jon; BOOCH, Grady (ed.). UML 2003 The Unified Modeling Language, Modeling Languages and Applications: 6th International Conference, San Francisco, CA, USA, October 20-24, 2003. Proceedings. Berlin: Springer, 2003. (Lecture Notes in Computer Science, v. 2863).
 
 
 MARTIN, Robert C. Arquitetura limpa: o guia do artesão para estrutura e design de software. Rio de Janeiro: Alta Books, 2019. 432 p. Tradução de: Clean Architecture: A Craftsman's Guide to Software Structure and Design. ISBN: 978-8550804606.

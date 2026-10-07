@@ -236,7 +236,7 @@ O papel do QA moderno (Software Development Engineer in Test) envolve escrever c
   - *Engenharia de Requisitos* (BDD - Behavior-Driven Development, critérios de aceitação).
   - *Lógica de Programação e Arquitetura de Software.*
 * **Certificações Recomendadas:**
-  - **Padrão-Ouro Global:** *ISTQB Certified Tester Foundation Level (CTFL)* — altíssimo reconhecimento na contratação.
+  - **Padrão-Ouro Global:** *ISTQB Certified Tester Foundation Level (CTFL)* altíssimo reconhecimento na contratação.
   - **Avançadas:** *ISTQB Agile Tester* ou *ISTQB Test Automation Engineering*.
 * **O que Provar no Portfólio (GitHub):**
   - Suítes de testes end-to-end (E2E) automatizados utilizando Playwright, Cypress ou Selenium.

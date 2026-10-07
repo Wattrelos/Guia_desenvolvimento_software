@@ -71,7 +71,7 @@ Em vez de uma classe criar os objetos de que precisa para funcionar (como uma co
 
 3. **Demonstração Prática de Intercambiabilidade e Testes**:
    - Criação de [PostgreSQLConnection.php](/backend/src/Infrastructure/Persistence/Connection/PostgreSQLConnection.php): Mostra como trocar o driver sem alterar a regra de negócio.
-   - Criação de [InMemoryConnection.php](/backend/src/Infrastructure/Persistence/Connection/InMemoryConnection.php): Implementação mock para demonstrar a maior vantagem do DI em relação ao Singleton — a capacidade de rodar **testes unitários em milissegundos sem depender de banco de dados**.
+   - Criação de [InMemoryConnection.php](/backend/src/Infrastructure/Persistence/Connection/InMemoryConnection.php): Implementação mock para demonstrar a maior vantagem do DI em relação ao Singleton a capacidade de rodar **testes unitários em milissegundos sem depender de banco de dados**.
 
 4. **Script Executável [dependency_injection.php](/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.php)**:
    - O arquivo estava vazio (0 bytes). Agora é um script de demonstração completo que executa 3 cenários no terminal:
