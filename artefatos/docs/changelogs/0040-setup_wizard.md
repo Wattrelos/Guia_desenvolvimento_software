@@ -1,7 +1,7 @@
 # Changelog - AgSonhos Setup Wizard (CL-0040)
 
 * **Identificador:** CL-0040
-* **Deploy Plan / Referência:** [DP-040 (Setup Wizard & Instalação Guiada)](file:///var/www/html/Guia_desenvolvimento_software/docs/architecture/deployment/deploy-plan_040.md)
+* **Deploy Plan / Referência:** [DP-040 (Setup Wizard & Instalação Guiada)](/docs/architecture/deployment/deploy-plan_040.md)
 * **Data da Conclusão:** 2026-09-30
 * **Autor(es):** Equipe de Arquitetura e Engenharia de Software
 * **Revisor(es):** Tech Lead de Backend & QA Lead
@@ -14,7 +14,7 @@
 
 Esta fatia vertical entrega o **Setup Wizard (Assistente de Instalação Guiada)** para a plataforma AgSonhos, permitindo que a aplicação seja implantada e configurada em novos ambientes (desenvolvimento, staging ou instâncias de novos clientes) de forma 100% automatizada e visual, sem necessidade de manipulação manual de arquivos de configuração ou importações manuais de SQL via linha de comando.
 
-A solução introduz o gerenciador atômico de configurações de ambiente ([`EnvironmentManager`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Infrastructure/Support/EnvironmentManager.php)), um middleware de interceptação global ([`InstallationCheckMiddleware`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Http/Middlewares/InstallationCheckMiddleware.php)) que redireciona acessos não instalados para o instalador e bloqueia tentativas indevidas após a finalização, além de testes AJAX de conectividade com MySQL, provisionamento completo de banco de dados e criação segura do usuário Super Administrador com criptografia Argon2id.
+A solução introduz o gerenciador atômico de configurações de ambiente ([`EnvironmentManager`](/backend/src/Infrastructure/Support/EnvironmentManager.php)), um middleware de interceptação global ([`InstallationCheckMiddleware`](/backend/src/Http/Middlewares/InstallationCheckMiddleware.php)) que redireciona acessos não instalados para o instalador e bloqueia tentativas indevidas após a finalização, além de testes AJAX de conectividade com MySQL, provisionamento completo de banco de dados e criação segura do usuário Super Administrador com criptografia Argon2id.
 
 ---
 
@@ -37,7 +37,7 @@ A solução introduz o gerenciador atômico de configurações de ambiente ([`En
 * `APP_INSTALLED`: Flag booleana (`true` / `false`) indicando o estado de prontidão do sistema. Adicionada a `backend/.env.example` com valor padrão `false`.
 
 ### Banco de Dados / Migrations
-* Esquema SQL DDL canônico adicionado em [`backend/resources/schema/install.sql`](file:///var/www/html/Guia_desenvolvimento_software/backend/resources/schema/install.sql).
+* Esquema SQL DDL canônico adicionado em [`backend/resources/schema/install.sql`](/backend/resources/schema/install.sql).
 * Suporte a sementeira opcional de catálogo demonstrativo para homologação e CI (`Seed CI`).
 
 ### Permissões de Sistema de Arquivos
@@ -50,37 +50,37 @@ A solução introduz o gerenciador atômico de configurações de ambiente ([`En
 ### 🚀 Added (Novas Funcionalidades e Componentes)
 
 - [x] **Fase 1: Gerenciamento do Ambiente e Suporte (`EnvironmentManager`)**
-  - Implementada classe [`App\Infrastructure\Support\EnvironmentManager`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Infrastructure/Support/EnvironmentManager.php).
+  - Implementada classe [`App\Infrastructure\Support\EnvironmentManager`](/backend/src/Infrastructure/Support/EnvironmentManager.php).
   - Suporte a leitura inteligente de `.env` com fallback automático para `.env.example`.
   - Gravação atômica via arquivo temporário (`.env.tmp`), trava `LOCK_EX`, substituição via `rename` e aplicação de permissões seguras `0640`.
-  - Suíte de testes unitários aprovada em [`tests/Unit/Infrastructure/Support/EnvironmentManagerTest.php`](file:///var/www/html/Guia_desenvolvimento_software/tests/Unit/Infrastructure/Support/EnvironmentManagerTest.php) (7 testes, 17 asserções).
+  - Suíte de testes unitários aprovada em [`tests/Unit/Infrastructure/Support/EnvironmentManagerTest.php`](/tests/Unit/Infrastructure/Support/EnvironmentManagerTest.php) (7 testes, 17 asserções).
 
 - [x] **Fase 2: Middleware de Interceptação (`InstallationCheckMiddleware`)**
-  - Criado [`App\Http\Middlewares\InstallationCheckMiddleware`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Http/Middlewares/InstallationCheckMiddleware.php).
+  - Criado [`App\Http\Middlewares\InstallationCheckMiddleware`](/backend/src/Http/Middlewares/InstallationCheckMiddleware.php).
   - Desvio automático 302 para a rota `/setup` quando o sistema estiver em estado `APP_INSTALLED=false`.
   - Bloqueio de segurança 403 Forbidden (respostas diferenciadas em JSON e HTML) para qualquer acesso a `/setup` quando `APP_INSTALLED=true`.
-  - Suíte de testes unitários aprovada em [`tests/Unit/Http/Middlewares/InstallationCheckMiddlewareTest.php`](file:///var/www/html/Guia_desenvolvimento_software/tests/Unit/Http/Middlewares/InstallationCheckMiddlewareTest.php) (6 testes, 14 asserções).
+  - Suíte de testes unitários aprovada em [`tests/Unit/Http/Middlewares/InstallationCheckMiddlewareTest.php`](/tests/Unit/Http/Middlewares/InstallationCheckMiddlewareTest.php) (6 testes, 14 asserções).
 
 - [x] **Fase 3: Controladores do Assistente de Instalação (`Setup Controllers`)**
-  - Implementado [`App\Http\Controllers\Setup\ShowSetupAction`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Http/Controllers/Setup/ShowSetupAction.php) para diagnóstico de versão do PHP, extensões requeridas (PDO, OpenSSL, Mbstring) e permissões de escrita em disco.
-  - Implementado [`App\Http\Controllers\Setup\TestDatabaseConnectionAction`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Http/Controllers/Setup/TestDatabaseConnectionAction.php) para validação assíncrona AJAX de credenciais do MySQL antes do provisionamento.
-  - Implementado [`App\Http\Controllers\Setup\ProcessInstallationAction`](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Http/Controllers/Setup/ProcessInstallationAction.php) com pipeline transacional completo: criação de schema, execução de DDL/Seeds, hashing seguro de senha do Super Admin com Argon2id e persistência atômica do `.env` com `APP_INSTALLED=true`.
+  - Implementado [`App\Http\Controllers\Setup\ShowSetupAction`](/backend/src/Http/Controllers/Setup/ShowSetupAction.php) para diagnóstico de versão do PHP, extensões requeridas (PDO, OpenSSL, Mbstring) e permissões de escrita em disco.
+  - Implementado [`App\Http\Controllers\Setup\TestDatabaseConnectionAction`](/backend/src/Http/Controllers/Setup/TestDatabaseConnectionAction.php) para validação assíncrona AJAX de credenciais do MySQL antes do provisionamento.
+  - Implementado [`App\Http\Controllers\Setup\ProcessInstallationAction`](/backend/src/Http/Controllers/Setup/ProcessInstallationAction.php) com pipeline transacional completo: criação de schema, execução de DDL/Seeds, hashing seguro de senha do Super Admin com Argon2id e persistência atômica do `.env` com `APP_INSTALLED=true`.
 
 - [x] **Fase 4: Roteamento e Injeção de Dependências**
-  - Registrado arquivo de rotas isoladas em [`backend/config/routes/setup.php`](file:///var/www/html/Guia_desenvolvimento_software/backend/config/routes/setup.php).
-  - Registrado middleware na esteira de requisição HTTP em [`public_html/index.php`](file:///var/www/html/Guia_desenvolvimento_software/public_html/index.php) e [`backend/config/middleware.php`](file:///var/www/html/Guia_desenvolvimento_software/backend/config/middleware.php).
-  - Mapeadas as definições de serviço no container PHP-DI em [`backend/config/dependencies.php`](file:///var/www/html/Guia_desenvolvimento_software/backend/config/dependencies.php).
-  - Atualizado template de ambiente [`backend/.env.example`](file:///var/www/html/Guia_desenvolvimento_software/backend/.env.example) com `APP_INSTALLED=false`.
+  - Registrado arquivo de rotas isoladas em [`backend/config/routes/setup.php`](/backend/config/routes/setup.php).
+  - Registrado middleware na esteira de requisição HTTP em [`public_html/index.php`](/public_html/index.php) e [`backend/config/middleware.php`](/backend/config/middleware.php).
+  - Mapeadas as definições de serviço no container PHP-DI em [`backend/config/dependencies.php`](/backend/config/dependencies.php).
+  - Atualizado template de ambiente [`backend/.env.example`](/backend/.env.example) com `APP_INSTALLED=false`.
 
 - [x] **Fase 5: Interface Visual e Frontend do Setup Wizard**
-  - Criada view moderna e responsiva em [`backend/resources/views/setup/installer.html.twig`](file:///var/www/html/Guia_desenvolvimento_software/backend/resources/views/setup/installer.html.twig).
-  - Criado script desacoplado [`public_html/assets/js/setup/installer.js`](file:///var/www/html/Guia_desenvolvimento_software/public_html/assets/js/setup/installer.js) compatível com Content Security Policy (CSP nonce).
+  - Criada view moderna e responsiva em [`backend/resources/views/setup/installer.html.twig`](/backend/resources/views/setup/installer.html.twig).
+  - Criado script desacoplado [`public_html/assets/js/setup/installer.js`](/public_html/assets/js/setup/installer.js) compatível com Content Security Policy (CSP nonce).
   - Suporte a seleção de perfil de carga de dados: "Instalação Limpa (Clean)" vs "Catálogo Completo de Demonstração (Seed CI)".
-  - Importado esquema DDL canônico em [`backend/resources/schema/install.sql`](file:///var/www/html/Guia_desenvolvimento_software/backend/resources/schema/install.sql).
+  - Importado esquema DDL canônico em [`backend/resources/schema/install.sql`](/backend/resources/schema/install.sql).
 
 - [x] **Fase 6: Verificação Automatizada e Testes Ponta a Ponta**
-  - Implementados testes de integração em [`tests/Integration/Setup/SetupWizardActionsTest.php`](file:///var/www/html/Guia_desenvolvimento_software/tests/Integration/Setup/SetupWizardActionsTest.php) (4 testes, 13 asserções).
-  - Implementados testes de integração HTTP ponta a ponta com Slim 4 em [`tests/Integration/Http/InstallationCheckMiddlewareIntegrationTest.php`](file:///var/www/html/Guia_desenvolvimento_software/tests/Integration/Http/InstallationCheckMiddlewareIntegrationTest.php) (4 testes, 11 asserções).
+  - Implementados testes de integração em [`tests/Integration/Setup/SetupWizardActionsTest.php`](/tests/Integration/Setup/SetupWizardActionsTest.php) (4 testes, 13 asserções).
+  - Implementados testes de integração HTTP ponta a ponta com Slim 4 em [`tests/Integration/Http/InstallationCheckMiddlewareIntegrationTest.php`](/tests/Integration/Http/InstallationCheckMiddlewareIntegrationTest.php) (4 testes, 11 asserções).
 
 ---
 

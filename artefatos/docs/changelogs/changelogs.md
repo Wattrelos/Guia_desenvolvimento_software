@@ -189,7 +189,7 @@ Abaixo está o modelo canônico obrigatório para documentar fatias verticais e 
 
 > [!TIP]
 > **Exemplo Prático Canônico:**  
-> Uma implementação completa e real deste padrão pode ser consultada diretamente em [`0040-setup_wizard.md`](file:///var/www/html/Guia_desenvolvimento_software/artefatos/docs/changelogs/0040-setup_wizard.md), que documenta com precisão a entrega da fatia vertical do assistente de instalação e setup automatizado.
+> Uma implementação completa e real deste padrão pode ser consultada diretamente em [`0040-setup_wizard.md`](/artefatos/docs/changelogs/0040-setup_wizard.md), que documenta com precisão a entrega da fatia vertical do assistente de instalação e setup automatizado.
 
 ---
 
@@ -211,7 +211,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [1.2.0] - 2026-09-30
 ### Added
-- Assistente visual de instalação inicial (*Setup Wizard*) para configuração guiada do ambiente ([CL-0040](file:///var/www/html/Guia_desenvolvimento_software/artefatos/docs/changelogs/0040-setup_wizard.md)).
+- Assistente visual de instalação inicial (*Setup Wizard*) para configuração guiada do ambiente ([CL-0040](/artefatos/docs/changelogs/0040-setup_wizard.md)).
 - Validação assíncrona de credenciais do banco de dados MySQL via requisição AJAX.
 
 ### Changed

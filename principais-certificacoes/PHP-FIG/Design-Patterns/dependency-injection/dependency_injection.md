@@ -4,7 +4,7 @@
 > 
 > No ecossistema PHP moderno e alinhado aos padrões da **PHP-FIG (especialmente a PSR-11: Container Interface)**, a Injeção de Dependência é o pilar central de frameworks consolidados como **Laravel** e **Symfony**.
 
-Veja o código executável em [dependency_injection.php](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.php) e a modelagem visual em [dependency_injection.puml](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.puml).
+Veja o código executável em [dependency_injection.php](/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.php) e a modelagem visual em [dependency_injection.puml](/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.puml).
 
 ---
 
@@ -75,7 +75,7 @@ Para aplicar o padrão da forma mais sólida possível, desacoplamos a regra de 
 
 A interface estabelece o contrato que qualquer conexão deve cumprir, sem se importar com o driver específico:
 
-Arquivo: [DatabaseConnectionInterface.php](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Infrastructure/Persistence/Connection/DatabaseConnectionInterface.php)
+Arquivo: [DatabaseConnectionInterface.php](/backend/src/Infrastructure/Persistence/Connection/DatabaseConnectionInterface.php)
 
 ```php
 <?php
@@ -100,7 +100,7 @@ interface DatabaseConnectionInterface
 
 #### A. Conexão Real com MySQL conectada ao `.env`
 
-A classe [MySQLConnection.php](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Infrastructure/Persistence/Connection/MySQLConnection.php) implementa o contrato e permite injetar credenciais ou carregá-las de forma segura a partir do arquivo [.env](file:///var/www/html/Guia_desenvolvimento_software/backend/.env):
+A classe [MySQLConnection.php](/backend/src/Infrastructure/Persistence/Connection/MySQLConnection.php) implementa o contrato e permite injetar credenciais ou carregá-las de forma segura a partir do arquivo [.env](/backend/.env):
 
 ```php
 <?php
@@ -154,7 +154,7 @@ class MySQLConnection implements DatabaseConnectionInterface
 
 #### B. Implementação Mock para Testes Unitários Rápidos
 
-Criada em [InMemoryConnection.php](file:///var/www/html/Guia_desenvolvimento_software/backend/src/Infrastructure/Persistence/Connection/InMemoryConnection.php), ela não acessa a rede e armazena as instruções executadas em memória:
+Criada em [InMemoryConnection.php](/backend/src/Infrastructure/Persistence/Connection/InMemoryConnection.php), ela não acessa a rede e armazena as instruções executadas em memória:
 
 ```php
 <?php

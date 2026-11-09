@@ -120,7 +120,7 @@ composer dump-autoload
 
 ## 5. Passo 1: O Núcleo do Domínio (Value Objects, Entidades e Contratos)
 
-Inspirando-nos nos requisitos reais do e-commerce corporativo (vistos no [`BetaEngine`](file:///var/www/html/Guia_desenvolvimento_software/BetaEngine)), vamos modelar o caso de uso: **Cadastro de Novo Cliente** (`RF-001`).
+Inspirando-nos nos requisitos reais do e-commerce corporativo (vistos no [`BetaEngine`](/BetaEngine)), vamos modelar o caso de uso: **Cadastro de Novo Cliente** (`RF-001`).
 
 No padrão antigo (MVC legado), o controller recebia um array cru `$_POST`, chamava métodos gigantescos e misturava regras com SQL. Na nova arquitetura limpa, o Domínio é 100% puro, fortemente tipado e autovalidável.
 

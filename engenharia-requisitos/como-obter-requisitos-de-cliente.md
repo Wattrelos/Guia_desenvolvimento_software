@@ -293,6 +293,6 @@ flowchart TD
 ---
 
 ### Leituras Complementares no Guia:
-* [Engenharia de Requisitos: A Tríade RF, RNF e Regras de Negócio](file:///var/www/html/Guia_desenvolvimento_software/001_engenharia_de_requisitos.md)
-* [Decisões Arquiteturais e Registro de ADRs](file:///var/www/html/Guia_desenvolvimento_software/002_decisoes_arquiteturais_e_adrs.md)
-* [Diagramas de Casos de Uso e Especificação de Comportamento](file:///var/www/html/Guia_desenvolvimento_software/004_diagramas_de_casos_de_uso.md)
+* [Engenharia de Requisitos: A Tríade RF, RNF e Regras de Negócio](/001_engenharia_de_requisitos.md)
+* [Decisões Arquiteturais e Registro de ADRs](/002_decisoes_arquiteturais_e_adrs.md)
+* [Diagramas de Casos de Uso e Especificação de Comportamento](/004_diagramas_de_casos_de_uso.md)

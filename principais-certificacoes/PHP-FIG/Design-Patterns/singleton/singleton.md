@@ -2,7 +2,7 @@
 
 > O padrão **Singleton** é utilizado para garantir que uma classe tenha apenas uma única instância ativa em toda a execução do sistema e fornecer um ponto de acesso global para ela. No PHP, ele é comumente empregado no gerenciamento de conexões com bancos de dados e carregamento de configurações globais.
 
-Veja o código prático em [simpleton.php](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/singleton/simpleton.php) e o diagrama UML em [simpleton.puml](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/singleton/simpleton.puml).
+Veja o código prático em [simpleton.php](/principais-certificacoes/PHP-FIG/Design-Patterns/singleton/simpleton.php) e o diagrama UML em [simpleton.puml](/principais-certificacoes/PHP-FIG/Design-Patterns/singleton/simpleton.puml).
 
 ---
 
@@ -19,7 +19,7 @@ Para garantir que o padrão seja inviolável, é necessário fechar todas as por
 
 ## 🚀 Exemplo de Execução e Integração com `.env`
 
-O exemplo prático em [simpleton.php](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/singleton/simpleton.php) carrega de forma autônoma as configurações de conexão definidas no arquivo [.env](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/.env):
+O exemplo prático em [simpleton.php](/principais-certificacoes/PHP-FIG/Design-Patterns/singleton/simpleton.php) carrega de forma autônoma as configurações de conexão definidas no arquivo [.env](/principais-certificacoes/PHP-FIG/Design-Patterns/.env):
 
 ```php
 // Obtendo a primeira instância
@@ -42,4 +42,4 @@ if ($db1 === $db2) {
 
 Embora resolva a necessidade de instância única, o Singleton introduz alto acoplamento e estado global estático, tornando testes automatizados (unitários) difíceis de isolar e mockar.
 
-👉 Veja [como o padrão Dependency Injection (Injeção de Dependência) substitui o Singleton no PHP moderno](file:///var/www/html/Guia_desenvolvimento_software/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.md).
+👉 Veja [como o padrão Dependency Injection (Injeção de Dependência) substitui o Singleton no PHP moderno](/principais-certificacoes/PHP-FIG/Design-Patterns/dependency-injection/dependency_injection.md).
