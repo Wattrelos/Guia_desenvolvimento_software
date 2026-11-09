@@ -1,3 +1,12 @@
+> [!WARNING]
+> **AMBIENTE DE PRODUÇÃO NÃO É LABORATÓRIO**
+> 
+> O conteúdo, scripts e configurações contidos neste repositório têm caráter estritamente educacional e de estudo. 
+> * **Nunca** execute ou teste estes arquivos diretamente em um ambiente de produção.
+> * Use sempre um ambiente isolado (como um **Sandbox**, máquina virtual ou laboratório de testes).
+> 
+> O uso indevido dessas informações é de sua inteira responsabilidade. Para mais detalhes, consulte o nosso [disclaimer.md](./disclaimer.md).
+
 # 🚀 Trilha de Engenharia de Software: Da Concepção ao Código
 ### *Guia Mestre de Boas Práticas, Arquitetura Limpa, Modelagem de Sistemas e Resiliência em Produção*
 
