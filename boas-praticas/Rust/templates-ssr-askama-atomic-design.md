@@ -33,7 +33,7 @@ flowchart LR
 | **Erros de Tipagem / Propriedade** | Em runtime (`Undefined array key` / `null`). | Em runtime (`SpelEvaluationException` / `NullPointerException`). | **Em tempo de compilação:** o projeto não compila se um campo não existir na `struct`. |
 | **Acesso a Disco em Produção** | Requer leitura de arquivos/cache no filesystem. | Requer `resources/templates/` empacotado no `.jar`/`.war`. | **Zero I/O de disco.** O template já está embutido no binário executável. |
 | **Proteção XSS Automática** | Blade (`{{ }}`) e Twig escapam; `echo` cru é vulnerável. | `th:text` escapa; `th:utext` ou `<%= %>` exigem cuidado. | **Auto-escaping obrigatório** para HTML/XML por padrão (opt-out explícito via `\|safe`). |
-| **Lógica Pesada / Banco no HTML** | Comum vazar queries ou serviços (especialmente em PHP/JSP antigos). | Possível chamar beans Spring no Thymeleaf. | **Desincentivado fisicamente:** `.render()` é síncrono e puro — dados chegam prontos na `struct`. |
+| **Lógica Pesada / Banco no HTML** | Comum vazar queries ou serviços (especialmente em PHP/JSP antigos). | Possível chamar beans Spring no Thymeleaf. | **Desincentivado fisicamente:** `.render()` é síncrono e puro, dados chegam prontos na `struct`. |
 
 ---
 

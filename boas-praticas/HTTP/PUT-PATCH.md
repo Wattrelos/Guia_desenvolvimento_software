@@ -131,7 +131,7 @@ Content-Type: application/json-patch+json
 
 O mercado adota duas especificações formais para serializar modificações parciais em JSON:
 
-### 1. JSON Merge Patch (RFC 7396) — O Mais Popular
+### 1. JSON Merge Patch (RFC 7396): O Mais Popular
 Utiliza o cabeçalho `Content-Type: application/merge-patch+json`. O payload reflete a estrutura do documento original contendo apenas o que mudou. Para remover um campo existente, envia-se o valor `null`:
 
 ```json
@@ -142,7 +142,7 @@ Utiliza o cabeçalho `Content-Type: application/merge-patch+json`. O payload ref
 }
 ```
 
-### 2. JSON Patch (RFC 6902) — O Mais Rigoroso
+### 2. JSON Patch (RFC 6902): O Mais Rigoroso
 Utiliza o cabeçalho `Content-Type: application/json-patch+json`. O payload é um array de operações atômicas (`add`, `remove`, `replace`, `move`, `copy`, `test`):
 
 ```json

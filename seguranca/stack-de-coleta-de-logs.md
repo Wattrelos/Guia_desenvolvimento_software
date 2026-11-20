@@ -82,18 +82,18 @@ graph TD
     R -->|Estado de negócio:<br/>Qual é o dado atual do cliente?| Scylla["🏛️ SCYLLADB / POSTGRESQL<br/>(Banco Operacional de Domínio)<br/>Guarda: Usuários, Pedidos, Saldos"]:::scylla
 ```
 
-### 1. Redis (Memória RAM Volátil — Camada de Ação Imediata)
+### 1. Redis (Memória RAM Volátil: Camada de Ação Imediata)
 * **Tempo de Acesso:** Sub-milissegundo (microssegundos).
 * **Natureza dos Dados:** Dados efêmeros com expiração automática (TTL), contadores de acesso, listas de IPs em quarentena (*jails*) e sessões ativas.
 * **Propósito:** Responder com velocidade instantânea: *"Este IP está autorizado a prosseguir agora?"*. Se o IP for malicioso, o Redis permite barrá-lo antes que a requisição gaste recursos do sistema.
 
-### 2. Grafana Loki (Agregador de Logs — Histórico Imutável e Auditoria)
+### 2. Grafana Loki (Agregador de Logs: Histórico Imutável e Auditoria)
 * **Tempo de Acesso:** Milissegundos a segundos para consultas analíticas.
 * **Natureza dos Dados:** Fluxos cronológicos imutáveis de texto semi-estruturado, compactados em blocos e armazenados em *Object Storage* de baixo custo (AWS S3, MinIO, GCP Storage).
 * **Propósito:** Responder à investigação forense: *"Quantos ataques ocorreram hoje? Quais IPs participaram? Qual o padrão de carga nas últimas 72 horas?"*.
 * **Não é um banco de aplicação:** Você não consulta o Loki para validar se uma senha está correta ou se o cliente possui saldo em conta.
 
-### 3. ScyllaDB / Bancos Relacionais (Banco de Domínio — Estado Atual)
+### 3. ScyllaDB / Bancos Relacionais (Banco de Domínio: Estado Atual)
 * **Tempo de Acesso:** Baixa latência (1 a 5 ms) com suporte a transações ou partição massiva.
 * **Natureza dos Dados:** Tabelas fortemente tipadas com esquemas definidos (*schemas*), índices secundários e relações.
 * **Propósito:** Responder: *"Qual é o e-mail, nome e hash de senha cadastrados para o usuário ID 4501?"*.

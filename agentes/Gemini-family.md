@@ -18,7 +18,7 @@
 
 ## 🧭 1. Visão Geral da Família Gemini 4
 
-A geração **Gemini 4** organiza seus modelos em três faixas principais de custo, velocidade e profundidade de raciocínio — com **Gemini 4 Neon** assumindo o papel intermediário de alto desempenho que substituiu o **Gemini 4 Argon** no seletor padrão de assinantes (Google AI Pro/Ultra) e em ambientes como o **Google Antigravity**.
+A geração **Gemini 4** organiza seus modelos em três faixas principais de custo, velocidade e profundidade de raciocínio, com **Gemini 4 Neon** assumindo o papel intermediário de alto desempenho que substituiu o **Gemini 4 Argon** no seletor padrão de assinantes (Google AI Pro/Ultra) e em ambientes como o **Google Antigravity**.
 
 ```mermaid
 flowchart TD
@@ -59,7 +59,7 @@ Todos os modelos da linha compartilham **janela de contexto unificada de 1 milh�
 
 ### 2.2. Gemini 4 Neon (`gemini-4-neon`)
 
-* **Papel na família:** Modelo intermediário principal da linha Gemini 4 — posicionado entre o ágil **Hydrogen** e o pesado **Carbon** — que substituiu o **Gemini 4 Argon** no seletor padrão de modelos para fluxos profissionais.
+* **Papel na família:** Modelo intermediário principal da linha Gemini 4, posicionado entre o ágil **Hydrogen** e o pesado **Carbon**, que substituiu o **Gemini 4 Argon** no seletor padrão de modelos para fluxos profissionais.
 * **Principais diferenciais:**
   * **Níveis de pensamento ajustáveis (*Thinking Levels*):** Permite calibrar profundidade e gasto de tokens entre `low`, `medium`, `high` (padrão) e `xhigh` (para problemas extremos de engenharia e ciência).
   * **Edições cirúrgicas de código e baixa alucinação:** Otimizado para depuração e refatoração em múltiplos arquivos sem reescrever trechos desnecessários, mantendo alta aderência às instruções e baixa taxa de fabricação de dados.

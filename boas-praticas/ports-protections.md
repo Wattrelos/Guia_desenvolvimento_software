@@ -529,9 +529,9 @@ sudo ss -tulpn
 ```
 
 #### Como interpretar a saída:
-* ✅ **Seguro:** `127.0.0.1:3306` ou `localhost:5432` — O serviço está ouvindo estritamente na interface de loopback interna.
-* ❌ **PERIGOSO:** `0.0.0.0:3306` ou `:::3306` — O banco está aceitando conexões de qualquer placa de rede pública!
-* ✅ **Esperado para Web:** `0.0.0.0:80` e `0.0.0.0:443` — Servidor Nginx/Apache público.
+* ✅ **Seguro:** `127.0.0.1:3306` ou `localhost:5432`. O serviço está ouvindo estritamente na interface de loopback interna.
+* ❌ **PERIGOSO:** `0.0.0.0:3306` ou `:::3306`. O banco está aceitando conexões de qualquer placa de rede pública!
+* ✅ **Esperado para Web:** `0.0.0.0:80` e `0.0.0.0:443`. Servidor Nginx/Apache público.
 
 ---
 

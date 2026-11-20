@@ -32,13 +32,13 @@ O preço final deve refletir o tempo gasto analisando planos, configurando o ser
 
 ## 🧭 2. Matriz Rápida: Qual Hospedagem Recomendar?
 
-Escolher a infraestrutura certa evita que o cliente pague caro por recursos que não usa — ou sofra com lentidão por economizar no lugar errado:
+Escolher a infraestrutura certa evita que o cliente pague caro por recursos que não usa ou sofra com lentidão por economizar no lugar errado:
 
 | Perfil do Projeto do Cliente | Infraestrutura Recomendada | Observação Comercial |
 | :--- | :--- | :--- |
 | **Site institucional leve / Landing Page estática** | **Cloudflare Pages / Vercel / Netlify** ou hospedagem compartilhada de entrada | Custo baixíssimo (ou gratuito no tier inicial) e altíssima velocidade. |
 | **Site WordPress, blog ou catálogo simples** | **Hospedagem compartilhada gerenciada** ou Cloud gerenciado | Verifique se inclui **SSL gratuito (Let's Encrypt)**, backup automático e bom suporte de e-mail. |
-| **Sistema sob medida / API / E-commerce robusto** | **VPS dedicada** (ex.: Hetzner, DigitalOcean, Contabo, AWS Lightsail) | **Atenção:** VPS exige administração de SO, firewall, atualizações e backups — **nunca** entregue uma VPS sem contrato mensal de manutenção ou aviso formal de escopo. |
+| **Sistema sob medida / API / E-commerce robusto** | **VPS dedicada** (ex.: Hetzner, DigitalOcean, Contabo, AWS Lightsail) | **Atenção:** VPS exige administração de SO, firewall, atualizações e backups **nunca** entregue uma VPS sem contrato mensal de manutenção ou aviso formal de escopo. |
 
 > [!WARNING]
 > **Armadilhas comuns para alertar o cliente na consultoria:**
