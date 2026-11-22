@@ -138,7 +138,7 @@ pub fn truncar_bytes_seguro(texto: &str, max_bytes: usize) -> &str {
 
 ## 3. Segurança Defensiva: Prevenção de DoS, ReDoS e Exaustão de Recursos
 
-Limitar o tamanho de strings na camada de entrada não é apenas uma conveniência estética ou semântica — é um **requisito essencial de cibersegurança**:
+Limitar o tamanho de strings na camada de entrada não é apenas uma conveniência estética ou semântica, é um **requisito essencial de cibersegurança**:
 
 ### 1. Ataque de DoS por Algoritmos de Hash de Senha (Argon2 / BCrypt)
 Funções de derivação de chave e hashing criptográfico (Argon2id, bcrypt, PBKDF2) são intencionalmente desenhadas para serem lentas e pesadas para a CPU, visando dificultar ataques de força bruta.
@@ -170,7 +170,7 @@ Diferente de engines baseadas em retrocesso (*backtracking*) de linguagens como 
 
 ## 4. Abordagem 1: O Padrão Newtype Manual (DDD & Value Objects)
 
-A solução mais canônica, robusta e idiomática em Rust para modelar conceitos como `VARCHAR(N)` é criar um **Newtype** — uma struct tupla com campo interno privado e um **Construtor Inteligente (*Smart Constructor*)**:
+A solução mais canônica, robusta e idiomática em Rust para modelar conceitos como `VARCHAR(N)` é criar um **Newtype**, uma struct tupla com campo interno privado e um **Construtor Inteligente (*Smart Constructor*)**:
 
 ```rust
 use std::fmt;

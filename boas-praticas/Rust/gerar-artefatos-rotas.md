@@ -318,7 +318,7 @@ Crie um script de conveniência em [`scripts/dev/generate-route-docs.sh`](file:/
 ```bash
 #!/usr/bin/env bash
 # ==============================================================================
-# Alpha Engine — Gerador Automatizado de Documentação de Rotas
+# Alpha Engine: Gerador Automatizado de Documentação de Rotas
 # ==============================================================================
 set -euo pipefail
 

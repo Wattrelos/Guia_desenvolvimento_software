@@ -188,7 +188,7 @@ DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssh 127.0.0.1:22 --ssl 127.0.0.1
 
 ---
 
-## 5. Abordagem 3: O Padrão Ouro Moderno — Túneis Zero Trust (Cloudflare Tunnel)
+## 5. Abordagem 3: O Padrão Ouro Moderno. Túneis Zero Trust (Cloudflare Tunnel)
 
 Se você utiliza ou planeja utilizar a Cloudflare, a abordagem de arquitetura mais segura da atualidade é o **Cloudflare Tunnel (Zero Trust)**:
 
