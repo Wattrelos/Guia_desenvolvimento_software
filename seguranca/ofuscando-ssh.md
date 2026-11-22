@@ -1,4 +1,4 @@
-# 🔐 Ofuscação e Hardening de SSH na VPS (Debian 13 — Skanstull)
+# 🔐 Ofuscação e Hardening de SSH na VPS (Debian 13: Skanstull)
 
 > [!IMPORTANT]
 > **A ofuscação de porta deve ser uma das últimas camadas de segurança, nunca a primeira.**
@@ -44,14 +44,14 @@ Antes de pensar em trocar a porta `22`, garanta que a segurança real já está 
 
 Se o SSH precisar continuar acessível pela internet pública (ex.: para administração direta, túneis SSH para MySQL `3306`/MongoDB `27017` ou `git push` no Forgejo) e você quiser reduzir o ruído de scanners trocando a porta `22` por uma porta alta (ex.: `2244` ou `54321`), siga **exatamente esta ordem** para evitar *lockout*:
 
-### Passo 1 — Liberar a nova porta no UFW (mantendo a `22` aberta)
+### Passo 1: Liberar a nova porta no UFW (mantendo a `22` aberta)
 
 ```bash
 sudo ufw allow 2244/tcp comment 'SSH Customizado'
 sudo ufw status verbose
 ```
 
-### Passo 2 — Configurar a nova porta em `/etc/ssh/sshd_config.d/00-hardening.conf`
+### Passo 2: Configurar a nova porta em `/etc/ssh/sshd_config.d/00-hardening.conf`
 
 Adicione a diretiva `Port` ao arquivo de hardening (mantendo as travas de senha e `root`):
 
@@ -69,7 +69,7 @@ Valide a sintaxe antes de aplicar:
 sudo sshd -t
 ```
 
-### Passo 3 — Atualizar o Fail2Ban (`/etc/fail2ban/jail.local`)
+### Passo 3: Atualizar o Fail2Ban (`/etc/fail2ban/jail.local`)
 
 Garanta que o Fail2Ban passe a monitorar e bloquear a nova porta na seção `[sshd]`:
 
@@ -82,7 +82,7 @@ maxretry = 5
 bantime  = 1h
 ```
 
-### Passo 4 — Reiniciar SSH (e `ssh.socket`) + Fail2Ban
+### Passo 4: Reiniciar SSH (e `ssh.socket`) + Fail2Ban
 
 > [!NOTE]
 > Em sistemas modernos como **Debian 13** e **Ubuntu 22.10+**, o daemon pode usar *socket activation* (`ssh.socket`). Se apenas reiniciar `ssh.service` mantiver a porta `22`, reinicie o `ssh.socket` também.
@@ -100,7 +100,7 @@ sudo ss -tlnp | grep sshd
 sudo sshd -T | grep -iE 'port|passwordauthentication|permitrootlogin'
 ```
 
-### Passo 5 — Testar em um SEGUNDO terminal (sem fechar o atual!)
+### Passo 5: Testar em um SEGUNDO terminal (sem fechar o atual!)
 
 Abra **outra janela de terminal** na sua máquina local e valide o acesso com o usuário `deploy`:
 
@@ -110,7 +110,7 @@ ssh -p 2244 deploy@IP_DA_VPS
 
 *(Caso ocorra qualquer imprevisto e você perca o acesso, utilize o **Browser Terminal** no hPanel da Hostinger como console de emergência).*
 
-### Passo 6 — Fechar a porta `22` no firewall
+### Passo 6: Fechar a porta `22` no firewall
 
 Somente após confirmar que a conexão pela porta `2244` funcionou perfeitamente, remova a regra antiga:
 
