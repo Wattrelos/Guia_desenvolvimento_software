@@ -61,7 +61,7 @@ Aplicações Java (especialmente **Spring Boot**) possuem consumo de memória ba
 > **Atenção ao plano de 1 vCPU / 4 GB RAM:**
 > Embora apareça como opção econômica inicial, se a loja realmente atingir picos próximos de **100 usuários simultâneos** (navegando, filtrando produtos e fechando carrinho no mesmo minuto), **1 núcleo de vCPU** costuma gerar fila de requisições e lentidão perceptível. Planeje iniciar com **2 vCPU / 4–8 GB** ou deixar o *upgrade* imediato previsto no orçamento.
 >
-> 💡 **Dica de Otimização de Custos:** se você compilar o sistema Java como binário nativo usando **GraalVM Native Image**, o consumo de memória cai de ~400–800 MB para **~40–165 MB**, liberando bastante RAM para o banco de dados em VPS menores. Veja o tutorial completo em [graavm.md](./graavm.md).
+> 💡 **Dica de Otimização de Custos:** se você compilar o sistema Java como binário nativo usando **GraalVM Native Image**, o consumo de memória cai de ~400–800 MB para **~40–165 MB**, liberando bastante RAM para o banco de dados em VPS menores. Veja o tutorial completo em [graalvm.md](./graavm.md).
 
 ---
 
